@@ -1,0 +1,7 @@
+# Ignore everything by default
+*
+
+# Except the following
+!.gitconfig
+!.gitignore
+!.local/bin
