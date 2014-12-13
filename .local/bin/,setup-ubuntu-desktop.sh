@@ -1,16 +1,21 @@
 #!/bin/bash
 
+if [ -z "$DISPLAY" ]; then
+    echo "This script is intended to be run from a desktop terminal."
+    exit 1
+fi
+
 # Drop sudo cache and ask again to confirm sudo
 sudo -K
 if ! sudo -v; then
-  echo "sudo failed; aborting."
-  exit 1
+    echo "sudo failed; aborting."
+    exit 1
 fi
 
 # Use aptitude because apt-get doesn't store which packages are explicitly
 # installed.
-if ! which aptitude; then
-  sudo apt-get install -y aptitude
+if ! which aptitude >/dev/null; then
+    sudo apt-get install -y aptitude
 fi
 
 # Add PPAs
@@ -84,7 +89,7 @@ sudo aptitude install -y \
 
 # Initialize apt-file's cache
 if ! ls /var/cache/apt/apt-file | grep -q .; then
-  sudo apt-file update
+    sudo apt-file update
 fi
 
 # Add TrayTOTP to Keepass2
