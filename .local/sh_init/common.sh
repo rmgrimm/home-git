@@ -38,6 +38,7 @@ fi
 if [ $(uname -m) == 'x86_64' -a -e "$HOME/.local/nvm/nvm.sh" ]; then
     source "$HOME/.local/nvm/nvm.sh"
     export NVM_DIR="$HOME/.local/node"
+    mkdir -p "$HOME/.local/node"
     nvm use default
 
     if [ -e "$HOME/.local/nvm/bash_completion" ]; then
@@ -48,5 +49,5 @@ fi
 # Setup SSH agent
 if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
     source "$HOME/.local/sshag/sshag.sh"
-    sshag
+    sshag_init
 fi

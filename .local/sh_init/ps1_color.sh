@@ -13,7 +13,7 @@ fi
 PS1='${debian_chroot:+($debian_chroot)}'
 PS1=$PS1$IBlack$PS1Time$Color_Off
 if [ $HaveGit ]; then
-  PS1=$PS1'$(git rev-parse --top-level > /dev/null;'
+  PS1=$PS1'$(git rev-parse --top-level >/dev/null 2>&1 ;'
   PS1=$PS1'if [ $? -eq 0 ]; then'
   PS1=$PS1'  echo "$(git status | grep -q "nothing to commit";'
   PS1=$PS1'  if [ $? -eq 0 ]; then'

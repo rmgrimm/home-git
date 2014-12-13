@@ -17,16 +17,34 @@ fi
 sudo add-apt-repository -y ppa:jtaylor/keepass
 sudo add-apt-repository -y ppa:dlech/keepass2-plugins
 
-# And PlayOnLinux repo
-wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
-sudo wget "http://deb.playonlinux.com/playonlinux_$(lsb_release -c -s).list" \
-    -O/etc/apt/sources.list.d/playonlinux.list
-
 # Add Dropbox repo
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
-sudo add-apt-repository -y \
-    "deb http://linux.dropbox.com/ubuntu/ $(lsb_release -c -s) main"
+echo "deb http://linux.dropbox.com/ubuntu $(lsb_release -cs) main" | \
+    sudo tee /etc/apt/sources.list.d/dropbox.list
 
+# Add GetDeb repo
+wget -q "http://archive.getdeb.net/getdeb-archive.key" -O- | \
+    sudo apt-key add -
+echo "deb http://archive.getdeb.net/ubuntu $(lsb_release -cs)-getdeb games" | \
+    sudo tee /etc/apt/sources.list.d/getdeb.list
+
+# Add PlayOnLinux repo
+wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
+sudo wget "http://deb.playonlinux.com/playonlinux_$(lsb_release -cs).list" \
+    -O/etc/apt/sources.list.d/playonlinux.list
+
+# Add Skype repo
+sudo add-apt-repository -y \
+    "deb http://archive.canonical.com/ $(lsb_release -cs) partner"
+
+# Add Steam repo
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B05498B7
+echo "deb http://repo.steampowered.com/steam precise steam" | \
+    sudo tee /etc/apt/sources.list.d/steam.list
+echo "deb-src http://repo.steampowered.com/steam precise steam" | \
+    sudo tee -a /etc/apt/sources.list.d/steam.list
+
+# Update package information
 sudo aptitude update
 
 # Install APT packages
@@ -45,21 +63,22 @@ sudo aptitude install -y \
     mesa-utils \
     mono-complete \
     mosh \
+    mumble \
     openssh-server \
     p7zip-full p7zip-rar \
     playonlinux \
+    python-gpgme         `: so Dropbox doesn\'t complain` \
+    scummvm \
+    skype \
+    steam \
     tmux \
     tree                 `: when ls is simply not enough` \
     unison \
+    vlc \
+    xdotool              `: for KeePass autotype` \
     zile \
     \
-    `: for Dropbox` \
-    python-gpgme \
-    \
-    `: for Skype` \
-    libqt4-dbus libqtwebkit4 \
-    \
-    `: so Language Support dialog doesn't complain` \
+    `: so Language Support dialog doesn\'t complain` \
     mythes-en-au libreoffice-l10n-en-za libreoffice-help-en-gb \
     thunderbird-locale-en-gb libreoffice-l10n-en-gb hunspell-en-ca
 
@@ -79,14 +98,14 @@ sudo aptitude purge -f \
 # Remove some bad settings
 gsettings set com.canonical.Unity.Lenses remote-content-search 'none'
 gsettings set com.canonical.unity.webapps integration-allowed false
-gsettings set com.canonical.unity.webapps preauthorized-domains []
+gsettings set com.canonical.unity.webapps preauthorized-domains "[]"
 
-# Otherwise set up preferred look of desktop
+# Otherwise set up preferred look/feel of desktop
 gsettings set com.canonical.indicator.bluetooth visible false
-gsettings set com.canonical.indicator.datetime locations [ \
+gsettings set com.canonical.indicator.datetime locations "[ \
     'America/Chicago Omaha', \
     'UTC UTC', \
-    'Asia/Shanghai Hangzhou']
+    'Asia/Shanghai Hangzhou']"
 gsettings set com.canonical.indicator.datetime show-date true
 gsettings set com.canonical.indicator.datetime show-day true
 gsettings set com.canonical.indicator.datetime show-locations true
@@ -95,13 +114,29 @@ gsettings set com.canonical.indicator.datetime timezone-name \
 gsettings set com.canonical.indicator.power show-percentage true
 gsettings set com.canonical.indicator.power show-time true
 gsettings set com.canonical.unity-greeter play-ready-sound false
-gsettings set com.canonical.Unity.Launcher favorites [ \
-    'application://nautilus.desktop', \
+gsettings set com.canonical.Unity.Launcher favorites "[ \
+    'application://gnome-terminal.desktop', \
     'application://emacs24.desktop', \
     'application://firefox.desktop', \
+    'application://nautilus.desktop', \
     'application://gnome-system-monitor.desktop', \
+    'application://mumble.desktop', \
+    'application://skype.desktop', \
+    'application://steam.desktop', \
     'application://PlayOnLinux.desktop', \
+    'application://scummvm.desktop', \
     'unity://running-apps', \
     'unity://expo-icon', \
     'unity://desktop-icon', \
-    'unity://devices']
+    'unity://devices']"
+gsettings set org.gnome.desktop.input-sources sources "[ \
+    ('xkb', 'us'), \
+    ('ibus', 'pinyin')]"
+gsettings set org.gnome.desktop.background color-shading-type 'solid'
+gsettings set org.gnome.desktop.background picture-options 'none'
+gsettings set org.gnome.desktop.background primary-color '#000000000000'
+gsettings set org.gnome.Vino icon-visibility 'always'
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "[ \
+    '<Super>space']"
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward \
+    "['<Shift><Super>space']"
