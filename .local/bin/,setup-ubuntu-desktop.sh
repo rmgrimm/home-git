@@ -52,9 +52,16 @@ echo "deb-src http://repo.steampowered.com/steam precise steam" | \
 # Update package information
 sudo aptitude update
 
+# Pre-accept EULAs (find more by debconf-show <package name>)
+echo steam steam/question select "I AGREE" | \
+    sudo debconf-set-selections
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
+    select true | sudo debconf-set-selections
+
 # Install APT packages
 sudo aptitude install -y \
     apt-file             `: to find where files come from` \
+    blueman \
     dropbox \
     emacs24 emacs24-el emacs24-common-non-dfsg \
     etckeeper            `: track changes to /etc` \
@@ -75,9 +82,11 @@ sudo aptitude install -y \
     python-gpgme         `: so Dropbox doesn\'t complain` \
     scummvm \
     skype \
+    sqlite3 \
     steam \
     tmux \
     tree                 `: when ls is simply not enough` \
+    ttf-mscorefonts-installer \
     unison \
     vlc \
     xdotool              `: for KeePass autotype` \
@@ -92,9 +101,11 @@ if ! ls /var/cache/apt/apt-file | grep -q .; then
     sudo apt-file update
 fi
 
-# Add TrayTOTP to Keepass2
+# Additional plugins for Keepass2
 sudo wget "http://sourceforge.net/projects/traytotp-kp2/files/Tray%20TOTP%20v.%202.0.0.5/TrayTotp.plgx/download" \
     -O/usr/lib/keepass2/plugins/TrayTOTP.plgx
+sudo wget "http://sourceforge.net/projects/keepass-favicon/files/latest/download" \
+    -O/usr/lib/keepass2/plugins/FaviconDownloader.plgx
 
 # Purge some nonsense
 sudo aptitude purge -f \
@@ -119,9 +130,9 @@ gsettings set com.canonical.indicator.datetime timezone-name \
 gsettings set com.canonical.indicator.power show-percentage true
 gsettings set com.canonical.indicator.power show-time true
 gsettings set com.canonical.unity-greeter play-ready-sound false
-gsettings set com.canonical.Unity.Launcher favorites "[ \
-    'application://gnome-terminal.desktop', \
+gsettings set com.canonical.Unity.Launcher favorites "[ \ 
     'application://emacs24.desktop', \
+    'application://gnome-terminal.desktop', \
     'application://firefox.desktop', \
     'application://nautilus.desktop', \
     'application://gnome-system-monitor.desktop', \
