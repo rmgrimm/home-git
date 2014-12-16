@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
+    source "$HOME/.local/sshag/sshag.sh"
+    sshag_init
+fi

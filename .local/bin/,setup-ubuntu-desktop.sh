@@ -61,7 +61,7 @@ echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
 # Install APT packages
 sudo aptitude install -y \
     apt-file             `: to find where files come from` \
-    blueman \
+    blueman              `: this is better than the ubuntu bluetooth mgr` \
     dropbox \
     emacs24 emacs24-el emacs24-common-non-dfsg \
     etckeeper            `: track changes to /etc` \
@@ -70,7 +70,7 @@ sudo aptitude install -y \
     keepass2-plugin-application-indicator \
     keepass2-plugin-application-menu \
     keepass2-plugin-keepasshttp \
-    lrzip \
+    lrzip                `: high compression rate for large files` \
     lynx-cur \
     mesa-utils \
     mono-complete \
@@ -106,6 +106,15 @@ sudo wget "http://sourceforge.net/projects/traytotp-kp2/files/Tray%20TOTP%20v.%2
     -O/usr/lib/keepass2/plugins/TrayTOTP.plgx
 sudo wget "http://sourceforge.net/projects/keepass-favicon/files/latest/download" \
     -O/usr/lib/keepass2/plugins/FaviconDownloader.plgx
+
+# Don't hide any autostart items
+sudo sed -i -e 's/NoDisplay=true/NoDisplay=false/' \
+    /etc/xdg/autostart/*.desktop
+
+# Don't autostart GNOME's half-implemented SSH agent
+cp /etc/xdg/autostart/gnome-keyring-ssh.desktop "$HOME/.config/autostart"
+echo "X-GNOME-Autostart-enabled=false" | \
+    tee -a "$HOME/.config/autostart/gnome-keyring-ssh.desktop"
 
 # Purge some nonsense
 sudo aptitude purge -f \
