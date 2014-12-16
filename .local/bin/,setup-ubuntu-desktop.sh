@@ -53,10 +53,12 @@ echo "deb-src http://repo.steampowered.com/steam precise steam" | \
 sudo aptitude update
 
 # Pre-accept EULAs (find more by debconf-show <package name>)
-echo steam steam/question select "I AGREE" | \
-    sudo debconf-set-selections
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
     select true | sudo debconf-set-selections
+
+# Oops. Steam somehow assumes it's a decline; disabling for now
+#echo steam steam/question select "I AGREE" | \
+#    sudo debconf-set-selections
 
 # Install APT packages
 sudo aptitude install -y \
@@ -90,6 +92,7 @@ sudo aptitude install -y \
     ttf-mscorefonts-installer \
     unison \
     vlc \
+    wine                 `: so PlayOnLinux won\'t complain` \
     xdotool              `: for KeePass autotype` \
     zile \
     \
