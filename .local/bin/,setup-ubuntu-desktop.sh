@@ -62,6 +62,7 @@ echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
 sudo aptitude install -y \
     apt-file             `: to find where files come from` \
     blueman              `: this is better than the ubuntu bluetooth mgr` \
+    chromium-browser \
     dropbox \
     emacs24 emacs24-el emacs24-common-non-dfsg \
     etckeeper            `: track changes to /etc` \
@@ -116,6 +117,10 @@ cp /etc/xdg/autostart/gnome-keyring-ssh.desktop "$HOME/.config/autostart"
 echo "X-GNOME-Autostart-enabled=false" | \
     tee -a "$HOME/.config/autostart/gnome-keyring-ssh.desktop"
 
+# No really, I don't want GNOME keyring agent.
+mkdir -p "$HOME/.config/upstart"
+echo manual | tee "$HOME/.config/upstart/gnome-keyring.override"
+
 # Purge some nonsense
 sudo aptitude purge -f \
     unity-webapps-common
@@ -139,10 +144,11 @@ gsettings set com.canonical.indicator.datetime timezone-name \
 gsettings set com.canonical.indicator.power show-percentage true
 gsettings set com.canonical.indicator.power show-time true
 gsettings set com.canonical.unity-greeter play-ready-sound false
-gsettings set com.canonical.Unity.Launcher favorites "[ \ 
+gsettings set com.canonical.Unity.Launcher favorites "[ \
     'application://emacs24.desktop', \
     'application://gnome-terminal.desktop', \
     'application://firefox.desktop', \
+    'application://chromium-browser.desktop', \
     'application://nautilus.desktop', \
     'application://gnome-system-monitor.desktop', \
     'application://mumble.desktop', \
