@@ -11,4 +11,12 @@ fi
 
 android-sdk-linux/tools/android update sdk --no-ui
 
+if ! sudo -v; then
+    sudo curl --create-dirs -L -o /etc/udev/rules.d/51-android.rules -O -L \
+        https://raw.githubusercontent.com/snowdream/51-android/master/51-android.rules
+    sudo chmod a+r /etc/udev/rules.d/51-android.rules
+
+    sudo service udev restart
+fi
+
 popd
