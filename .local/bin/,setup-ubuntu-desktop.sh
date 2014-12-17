@@ -169,6 +169,8 @@ gsettings set org.gnome.desktop.input-sources sources "[ \
 gsettings set org.gnome.desktop.background color-shading-type 'solid'
 gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000000000000'
+gsettings set org.gnome.desktop.media-handling automount false
+gsettings set org.gnome.desktop.media-handling automount-open false
 gsettings set org.gnome.Vino icon-visibility 'always'
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "[ \
     '<Super>space']"
