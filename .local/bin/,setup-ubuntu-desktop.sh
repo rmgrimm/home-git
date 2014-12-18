@@ -107,6 +107,9 @@ if ! ls /var/cache/apt/apt-file | grep -q .; then
     sudo apt-file update
 fi
 
+# Add current user to groups
+sudo adduser $(id -un) kvm
+
 # Additional plugins for Keepass2
 sudo wget "http://sourceforge.net/projects/traytotp-kp2/files/Tray%20TOTP%20v.%202.0.0.5/TrayTotp.plgx/download" \
     -O/usr/lib/keepass2/plugins/TrayTOTP.plgx
