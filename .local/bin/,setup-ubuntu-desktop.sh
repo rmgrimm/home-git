@@ -95,6 +95,7 @@ sudo aptitude install -y \
     unison \
     vlc \
     wine                 `: so PlayOnLinux won\'t complain` \
+    x11-utils            `: for xprop ` \
     xdotool              `: for KeePass autotype` \
     zile \
     \
