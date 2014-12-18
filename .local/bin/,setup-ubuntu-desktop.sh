@@ -152,6 +152,7 @@ gsettings set com.canonical.Unity.Launcher favorites "[ \
     'application://gnome-terminal.desktop', \
     'application://firefox.desktop', \
     'application://chromium-browser.desktop', \
+    'application://android-studio.desktop', \
     'application://nautilus.desktop', \
     'application://gnome-system-monitor.desktop', \
     'application://mumble.desktop', \
