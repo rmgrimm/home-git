@@ -65,6 +65,7 @@ sudo aptitude install -y \
     apt-file             `: to find where files come from` \
     blueman              `: this is better than the ubuntu bluetooth mgr` \
     chromium-browser \
+    cpu-checker \
     dropbox \
     emacs24 emacs24-el emacs24-common-non-dfsg \
     etckeeper            `: track changes to /etc` \
@@ -83,6 +84,7 @@ sudo aptitude install -y \
     p7zip-full p7zip-rar \
     playonlinux \
     python-gpgme         `: so Dropbox doesn\'t complain` \
+    qemu-kvm \
     scummvm \
     skype \
     sqlite3 \
