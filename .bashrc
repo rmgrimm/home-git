@@ -2,10 +2,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# If not running interactively, don't do anything
+# If not running interactively, don't do much
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+ *)
+    if [ -x "$HOME/.local/sh_init/common_noninteractive.sh" ]; then
+        . "$HOME/.local/sh_init/common_noninteractive.sh"
+    fi
+    return
+    ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -58,9 +63,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    source "$HOME/.local/sh_init/ps1_color.sh"
+    . "$HOME/.local/sh_init/ps1_color.sh"
 else
-    source "$HOME/.local/sh_init/ps1_nocolor.sh"
+    . "$HOME/.local/sh_init/ps1_nocolor.sh"
 fi
 unset color_prompt force_color_prompt
 
@@ -115,6 +120,6 @@ if ! shopt -oq posix; then
 fi
 
 # Load custom common init
-if [ -f "$HOME/.local/sh_init/common.sh" ]; then
-    source "$HOME/.local/sh_init/common.sh"
+if [ -x "$HOME/.local/sh_init/common_interactive.sh" ]; then
+    . "$HOME/.local/sh_init/common_interactive.sh"
 fi

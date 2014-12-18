@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Turn off the annoying XON and XOFF from ctrl+s and ctrl+q
-stty ixoff -ixon
-stty start undef
-stty stop undef
-
 # Check for android studio
 if [ -d "$HOME/.local/android-studio/bin" ] ; then
     PATH="$HOME/.local/android-studio/bin:$PATH"
@@ -27,27 +22,4 @@ if [ -d "$HOME/.local/java" ] ; then
             PATH="$LATEST_JDK/bin:$PATH"
         fi
     fi
-fi
-
-# Set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-# Setup Node Version Manager only for amd64
-if [ $(uname -m) == 'x86_64' -a -e "$HOME/.local/nvm/nvm.sh" ]; then
-    source "$HOME/.local/nvm/nvm.sh"
-    export NVM_DIR="$HOME/.local/node"
-    mkdir -p "$HOME/.local/node"
-    nvm use default
-
-    if [ -e "$HOME/.local/nvm/bash_completion" ]; then
-        source "$HOME/.local/nvm/bash_completion"
-    fi
-fi
-
-# Setup SSH agent
-if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
-    source "$HOME/.local/sshag/sshag.sh"
-    sshag_init
 fi
