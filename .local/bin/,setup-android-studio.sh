@@ -12,6 +12,10 @@ sed -r \
     -e 's/^(# )?idea.log.path=.*$/idea.log.path=\$\{idea.system.path\}\/log/' \
     -i "$HOME/.local/android-studio/bin/idea.properties"
 
+if [ -d "$HOME/.AndroidStudio" ]; then
+    rm -rf "$HOME/.AndroidStudio"
+fi
+
 if [ ! -f "$HOME/.local/share/applications/android-studio.desktop" ]; then
     cat > "$HOME/.local/share/applications/android-studio.desktop" <<EOF
 [Desktop Entry]
