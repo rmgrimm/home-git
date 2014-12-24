@@ -135,7 +135,7 @@ mkdir -p "$HOME/.config/upstart"
 echo manual | tee "$HOME/.config/upstart/gnome-keyring.override"
 
 # Purge some nonsense
-sudo aptitude purge -f \
+sudo aptitude purge -y \
     unity-webapps-common
 
 # Remove some bad settings
