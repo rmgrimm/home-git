@@ -3,5 +3,3 @@
 	name = Robert Grimm
 [push]
 	default = simple
-[core]
-	editor = sensible-editor

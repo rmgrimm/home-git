@@ -32,3 +32,8 @@ if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
     . "$HOME/.local/sshag/sshag.sh"
     sshag_init
 fi
+
+# Use sensible editor with git
+if which sensible-editor >/dev/null; then
+    export GIT_EDITOR="$(which sensible-editor)"
+fi
