@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
-    . "$HOME/.local/sshag/sshag.sh"
-    sshag_init
+    /bin/bash "$HOME/.local/sshag/sshag.sh"
 fi
