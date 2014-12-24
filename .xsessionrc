@@ -1,5 +1,9 @@
 #!/bin/sh
 
 if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
-    /bin/bash "$HOME/.local/sshag/sshag.sh"
+    if [ ! -e "/etc/X11/Xsession.options ] ||
+       ! grep -q "^use-ssh-agent$" "/etc/X11/Xsession.options ||
+       [ ! -e "/usr/share/upstart/sessions/ssh-agent.conf" ]; then
+        /bin/bash "$HOME/.local/sshag/sshag.sh"
+    fi
 fi
