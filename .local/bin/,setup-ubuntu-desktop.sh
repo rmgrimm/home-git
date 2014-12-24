@@ -64,6 +64,7 @@ echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
 sudo aptitude install -y \
     apt-file             `: to find where files come from` \
     blueman              `: this is better than the ubuntu bluetooth mgr` \
+    bzr \
     chromium-browser \
     cpu-checker \
     dropbox \
@@ -76,7 +77,9 @@ sudo aptitude install -y \
     keepass2-plugin-keepasshttp \
     lrzip                `: high compression rate for large files` \
     lynx-cur \
+    make \
     mesa-utils \
+    mercurial \
     mono-complete \
     mosh \
     mumble \
@@ -89,6 +92,7 @@ sudo aptitude install -y \
     skype \
     sqlite3 \
     steam \
+    texinfo \
     tmux \
     tree                 `: when ls is simply not enough` \
     ttf-mscorefonts-installer \
