@@ -80,6 +80,7 @@ sudo aptitude install -y \
     keepass2 \
     keepass2-plugin-application-indicator \
     keepass2-plugin-application-menu \
+    keepass2-plugin-keeagent \
     keepass2-plugin-keepasshttp \
     lrzip                `: high compression rate for large files` \
     lynx-cur \
