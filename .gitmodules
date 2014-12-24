@@ -4,3 +4,6 @@
 [submodule ".local/sshag"]
 	path = .local/sshag
 	url = https://github.com/intuited/sshag.git
+[submodule ".emacs.d"]
+	path = .emacs.d
+	url = ssh://git@github.com/rmgrimm/.emacs.d.git
