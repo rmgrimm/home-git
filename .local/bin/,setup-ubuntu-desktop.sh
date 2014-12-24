@@ -18,7 +18,7 @@ if ! which aptitude >/dev/null; then
     sudo apt-get install -y aptitude
 fi
 
-# Add PPAs
+# Add KeePass related PPAs
 sudo add-apt-repository -y ppa:jtaylor/keepass
 sudo add-apt-repository -y ppa:dlech/keepass2-plugins
 
@@ -32,6 +32,12 @@ wget -q "http://archive.getdeb.net/getdeb-archive.key" -O- | \
     sudo apt-key add -
 echo "deb http://archive.getdeb.net/ubuntu $(lsb_release -cs)-getdeb games" | \
     sudo tee /etc/apt/sources.list.d/getdeb.list
+
+# Add Mono repo (they build against wheezy only)
+sudo apt-key adv --keyserver keyserver.ubuntu.com \
+    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb http://download.mono-project.com/repo/debian wheezy main" | \
+    sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 
 # Add PlayOnLinux repo
 wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
@@ -113,7 +119,7 @@ if ! ls /var/cache/apt/apt-file | grep -q .; then
 fi
 
 # Add current user to groups
-sudo adduser $(id -un) kvm
+sudo adduser $(id -nu) kvm
 
 # Additional plugins for Keepass2
 sudo wget "http://sourceforge.net/projects/keepass-favicon/files/latest/download" \
