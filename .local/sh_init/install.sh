@@ -29,4 +29,7 @@ if [ "$(id -nu)" = "robert" ]; then
     pushd "$HOME/.emacs.d"
     git remote set-url --push origin "ssh://git@github.com/rmgrimm/.emacs.d.git"
     popd
+    pushd "$HOME"
+    git remote set-url --push origin "ssh://git@github.com/rmgrimm/home-git.git"
+    popd
 fi
