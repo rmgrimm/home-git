@@ -176,16 +176,21 @@ gsettings set com.canonical.Unity.Launcher favorites "[ \
     'unity://expo-icon', \
     'unity://desktop-icon', \
     'unity://devices']"
+gsettings set org.freedesktop.ibus.panel lookup-table-orientation 0
+gsettings set org.gnome.DejaDup prompt-check 'disabled'
 gsettings set org.gnome.desktop.input-sources sources "[ \
     ('xkb', 'us'), \
     ('ibus', 'pinyin')]"
 gsettings set org.gnome.desktop.background color-shading-type 'solid'
 gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000000000000'
+gsettings set org.gnome.gnome-system-monitor cpu-stacked-area-chart true
+gsettings set org.gnome.gnome-system-monitor show-all-fs true
+gsettings set org.gnome.gnome-system-monitor show-tree true
 gsettings set org.gnome.desktop.media-handling automount false
 gsettings set org.gnome.desktop.media-handling automount-open false
-gsettings set org.gnome.Vino icon-visibility 'always'
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "[ \
     '<Super>space']"
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward \
     "['<Shift><Super>space']"
+gsettings set org.gnome.Vino icon-visibility 'always'

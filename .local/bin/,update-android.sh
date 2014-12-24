@@ -9,7 +9,8 @@ if [ ! -d "$HOME/.local/android-sdk-linux" ]; then
     wget -O- "$SDK_URL" | tar xz
 fi
 
-android-sdk-linux/tools/android update sdk --no-ui
+android-sdk-linux/tools/android update sdk --no-ui \
+    --filter tool,platform-tool
 
 if ! sudo -v; then
     sudo curl --create-dirs -L -o /etc/udev/rules.d/51-android.rules -O -L \
