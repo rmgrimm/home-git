@@ -20,16 +20,19 @@ mkdir -p "$HOME/.local/git-home-temp"
 git clone "$HOME_GIT_ORIGIN" "$HOME/.local/git-home-temp"
 pushd "$HOME/.local/git-home-temp"
 git submodule update --init
+pushd .emacs.d
+git checkout master
+popd
 popd
 
 rsync -av "$HOME/.local/git-home-temp/" "$HOME/" 
 rm -rf "$HOME/.local/git-home-temp"
 
 if [ "$(id -nu)" = "robert" ]; then
-    pushd "$HOME/.emacs.d"
-    git remote set-url --push origin "ssh://git@github.com/rmgrimm/.emacs.d.git"
-    popd
     pushd "$HOME"
     git remote set-url --push origin "ssh://git@github.com/rmgrimm/home-git.git"
+    popd
+    pushd "$HOME/.emacs.d"
+    git remote set-url --push origin "ssh://git@github.com/rmgrimm/.emacs.d.git"
     popd
 fi
