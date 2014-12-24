@@ -116,10 +116,12 @@ fi
 sudo adduser $(id -un) kvm
 
 # Additional plugins for Keepass2
-sudo wget "http://sourceforge.net/projects/traytotp-kp2/files/Tray%20TOTP%20v.%202.0.0.5/TrayTotp.plgx/download" \
-    -O/usr/lib/keepass2/plugins/TrayTOTP.plgx
 sudo wget "http://sourceforge.net/projects/keepass-favicon/files/latest/download" \
     -O/usr/lib/keepass2/plugins/FaviconDownloader.plgx
+
+# TrayTOTP is disabled until it runs nicely in Ubuntu 14.04
+#sudo wget "http://sourceforge.net/projects/traytotp-kp2/files/Tray%20TOTP%20v.%202.0.0.5/TrayTotp.plgx/download" \
+#    -O/usr/lib/keepass2/plugins/TrayTOTP.plgx
 
 # Don't hide any autostart items
 sudo sed -i -e 's/NoDisplay=true/NoDisplay=false/' \
