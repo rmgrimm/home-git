@@ -209,3 +209,11 @@ gsettings set org.gnome.Vino icon-visibility 'always'
 
 # Settings without schema
 dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 32
+
+# Settings in old-style gconf (dconf replaces gconf)
+gconftool-2 --set --type=bool \
+    /apps/gnome-terminal/global/use_menu_accelerators \
+    false
+gconftool-2 --set --type=bool \
+    /apps/gnome-terminal/global/use_mnemonics \
+    false
