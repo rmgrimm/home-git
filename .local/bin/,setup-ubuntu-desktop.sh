@@ -201,3 +201,6 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source "[ \
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward \
     "['<Shift><Super>space']"
 gsettings set org.gnome.Vino icon-visibility 'always'
+
+# Settings without schema
+dconf write /org/compiz/profiles/unity/plugins/unityshell/icon-size 32
