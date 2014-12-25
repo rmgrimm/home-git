@@ -79,9 +79,9 @@ sudo aptitude install -y \
     git gitk \
     keepass2 \
     keepass2-plugin-application-indicator \
-    keepass2-plugin-application-menu \
+    `: disabled for now -- keepass2-plugin-application-menu` \
     keepass2-plugin-keeagent \
-    keepass2-plugin-keepasshttp \
+    `: disabled for now -- keepass2-plugin-keepasshttp` \
     lrzip                `: high compression rate for large files` \
     lynx-cur \
     make \
@@ -125,10 +125,15 @@ sudo adduser $(id -nu) kvm
 # Additional plugins for Keepass2
 sudo wget "http://sourceforge.net/projects/keepass-favicon/files/latest/download" \
     -O/usr/lib/keepass2/plugins/FaviconDownloader.plgx
+sudo wget "https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx" \
+    -O/usr/lib/keepass2/plugins/KeePassHttp.plgx
 
-# TrayTOTP is disabled until it runs nicely in Ubuntu 14.04
-#sudo wget "http://sourceforge.net/projects/traytotp-kp2/files/Tray%20TOTP%20v.%202.0.0.5/TrayTotp.plgx/download" \
-#    -O/usr/lib/keepass2/plugins/TrayTOTP.plgx
+# TrayTOTP has a custom build to fix interoperability with notification plugin
+rm -rf /tmp/traytotp.zip
+wget "https://github.com/rmgrimm/traytotp-kp2/releases/download/v2.0.0.5nullcheck/TrayTOTPv2.0.0.5nullcheck.zip" \
+    -O/tmp/traytotp.zip
+sudo unzip -j /tmp/traytotp.zip TrayTOTP.plgx -d /usr/lib/keepass2/plugins
+rm /tmp/traytotp.zip
 
 # Don't hide any autostart items
 sudo sed -i -e 's/NoDisplay=true/NoDisplay=false/' \
