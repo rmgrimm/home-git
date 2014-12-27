@@ -58,6 +58,9 @@ echo "deb-src http://repo.steampowered.com/steam precise steam" | \
 # Update package information
 sudo aptitude update
 
+# Upgrade everything
+sudo aptitude full-upgrade -y
+
 # Pre-accept EULAs (find more by debconf-show <package name>)
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
     select true | sudo debconf-set-selections
@@ -73,10 +76,13 @@ sudo aptitude install -y \
     bzr \
     chromium-browser \
     cpu-checker \
+    curl \
     dropbox \
     emacs24 emacs24-el emacs24-common-non-dfsg \
     etckeeper            `: track changes to /etc` \
-    git gitk \
+    git git-doc git-gui \
+    git-bzr git-cvs git-svn \
+    gitk \
     keepass2 \
     keepass2-plugin-application-indicator \
     `: disabled for now -- keepass2-plugin-application-menu` \
