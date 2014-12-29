@@ -25,7 +25,7 @@ git checkout master
 popd
 popd
 
-rsync -av "$HOME/.local/git-home-temp/" "$HOME/" 
+rsync -av "$HOME/.local/git-home-temp/" "$HOME/"
 rm -rf "$HOME/.local/git-home-temp"
 
 if [ "$(id -nu)" = "robert" ]; then
