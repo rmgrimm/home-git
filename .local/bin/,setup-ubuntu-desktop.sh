@@ -88,6 +88,9 @@ sudo aptitude install -y \
     `: disabled for now -- keepass2-plugin-application-menu` \
     keepass2-plugin-keeagent \
     `: disabled for now -- keepass2-plugin-keepasshttp` \
+    language-pack-en-base \
+    language-pack-zh-hans-base \
+    libnss-myhostname \
     lrzip                `: high compression rate for large files` \
     lynx-cur \
     make \
