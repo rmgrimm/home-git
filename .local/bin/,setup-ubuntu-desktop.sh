@@ -138,7 +138,7 @@ sudo wget "https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx" \
 rm -rf /tmp/traytotp.zip
 wget "https://github.com/rmgrimm/traytotp-kp2/releases/download/v2.0.0.5nullcheck/TrayTOTPv2.0.0.5nullcheck.zip" \
     -O/tmp/traytotp.zip
-sudo unzip -j /tmp/traytotp.zip TrayTOTP.plgx -d /usr/lib/keepass2/plugins
+sudo unzip -jo /tmp/traytotp.zip TrayTOTP.plgx -d /usr/lib/keepass2/plugins
 rm /tmp/traytotp.zip
 
 # Don't hide any autostart items
@@ -146,11 +146,13 @@ sudo sed -i -e 's/NoDisplay=true/NoDisplay=false/' \
     /etc/xdg/autostart/*.desktop
 
 # Don't autostart GNOME's half-implemented SSH agent
-cp /etc/xdg/autostart/gnome-keyring-ssh.desktop "$HOME/.config/autostart"
+mkdir -p "$HOME/.config/autostart"
+cp /etc/xdg/autostart/gnome-keyring-ssh.desktop \
+    "$HOME/.config/autostart/gnome-keyring-ssh.desktop"
 echo "X-GNOME-Autostart-enabled=false" | \
     tee -a "$HOME/.config/autostart/gnome-keyring-ssh.desktop"
 
-# No really, I don't want GNOME keyring agent.
+# No really, I don't want GNOME keyring ssh-agent started.
 mkdir -p "$HOME/.config/upstart"
 echo manual | tee "$HOME/.config/upstart/gnome-keyring.override"
 
