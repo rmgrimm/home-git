@@ -3,3 +3,5 @@
 	name = Robert Grimm
 [push]
 	default = simple
+[rebase]
+	autosquash = true
