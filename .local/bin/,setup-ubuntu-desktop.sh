@@ -159,6 +159,21 @@ echo "X-GNOME-Autostart-enabled=false" | \
 mkdir -p "$HOME/.config/upstart"
 echo manual | tee "$HOME/.config/upstart/gnome-keyring.override"
 
+# Let Keepass2 autostart
+cp /usr/share/applications/keepass2.desktop \
+    "$HOME/.config/autostart/keepass2.desktop"
+echo "X-GNOME-Autostart-enabled=true" | \
+    tee -a "$HOME/.config/autostart/keepass2.desktop"
+
+# Copy emacs desktop file, then set it to use emacsclient
+mkdir -p "$HOME/.local/share/applications"
+cp /usr/share/applications/emacs24.desktop \
+    "$HOME/.local/share/applications/emacs24.desktop"
+sed -i -r \
+    -e "s/^Exec=.+[[:space:]]/Exec=\/usr\/bin\/emacsclient.emacs24 --alternate-editor=\"\" --create-frame /" \
+    -e "s/^TryExec=.+$/TryExec=emacsclient.emacs24/" \
+    "$HOME/.local/share/applications/emacs24.desktop"
+
 # Purge some nonsense
 sudo aptitude purge -y \
     unity-webapps-common

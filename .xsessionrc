@@ -7,3 +7,7 @@ if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
         /bin/bash "$HOME/.local/sshag/sshag.sh"
     fi
 fi
+
+if [ -x "/usr/bin/emacs24" ]; then
+    /usr/bin/emacs24 --daemon &
+fi
