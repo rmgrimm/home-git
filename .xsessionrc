@@ -9,5 +9,5 @@ if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
 fi
 
 if [ -x "/usr/bin/emacs24" ]; then
-    /usr/bin/emacs24 --daemon &
+    /usr/bin/emacs24 --daemon >/dev/null &
 fi
