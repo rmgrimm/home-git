@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Gnome Terminal still reports 8color mode... ugh. why?
+if [ "$COLORTERM" = "gnome-terminal" ]; then
+    # Yes, this is a hack; the terminal should report this properly.
+    case $TERM in
+        screen*|xterm*)
+            TERM=$TERM-256color
+            ;;
+    esac
+fi
+
 # Start with all the non-interactive stuff
 if [ -x "$HOME/.local/sh_init/common_noninteractive.sh" ]; then
     . "$HOME/.local/sh_init/common_noninteractive.sh"
