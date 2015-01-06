@@ -4,10 +4,12 @@
 if [ "$COLORTERM" = "gnome-terminal" ]; then
     # Yes, this is a hack; the terminal should report this properly.
     case $TERM in
+        *-256color) ;;
         screen*|xterm*)
             TERM=$TERM-256color
             ;;
     esac
+    force_color_prompt=y
 fi
 
 # Start with all the non-interactive stuff
