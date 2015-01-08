@@ -13,5 +13,5 @@ On ubuntu, this will likely follow with:
 
 ```bash
 . ~/.bashrc
-~/.local.nonpath-scripts/setup-ubuntu-desktop.sh
+~/.local/nonpath-scripts/setup-ubuntu-desktop.sh
 ```
