@@ -83,6 +83,7 @@ sudo aptitude install -y \
     git git-doc git-gui \
     git-bzr git-cvs git-svn \
     gitk \
+    htop \
     keepass2 \
     keepass2-plugin-application-indicator \
     `: disabled for now -- keepass2-plugin-application-menu` \
