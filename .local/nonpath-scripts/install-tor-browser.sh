@@ -26,3 +26,6 @@ gpg --verify "$HOME/Downloads/${TOR_BROWSER_FILE}.asc" \
 tar --extract --xz --strip-components=1 \
     --directory "$HOME/.local/tor-browser/" \
     --file "$HOME/Downloads/${TOR_BROWSER_FILE}"
+
+rm -f "$HOME/Downloads/${TOR_BROWSER_FILE}"
+rm -f "$HOME/Downloads/${TOR_BROWSER_FILE}.asc"
