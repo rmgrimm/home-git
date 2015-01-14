@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Emacs Server
+GenericName=Text Editor
+Comment=Server for GNU Emacs
+Exec=/usr/bin/emacs24 --daemon
+TryExec=/usr/bin/emacs24
+Icon=/usr/share/icons/hicolor/scalable/apps/emacs24.svg
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Utility;Development;TextEditor;
+X-GNOME-Autostart-enabled=true
