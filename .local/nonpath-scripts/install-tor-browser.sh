@@ -2,6 +2,12 @@
 
 VERSION_REGEXP="[[:digit:]]+\\.[[:digit:]]+\.[[:digit:]]+"
 
+case $(uname -i) in
+    x86_64) TOR_BROWSER_ARCH=linux64 ;;
+    x86) TOR_BROWSER_ARCH=linux32 ;;
+    *) echo "unknown arch; aborting install..."; exit 1
+esac
+
 TOR_BROWSER_VERSION=$(
     curl "https://www.torproject.org/projects/torbrowser.html.en#downloads" \
     | grep --only-matching --extended-regexp \
@@ -10,7 +16,7 @@ TOR_BROWSER_VERSION=$(
 TOR_BROWSER_VERSION=${TOR_BROWSER_VERSION:2:-2}
 
 # TODO(rgrimm): Get architecture (32/64)
-TOR_BROWSER_FILE="tor-browser-linux64-${TOR_BROWSER_VERSION}_en-US.tar.xz"
+TOR_BROWSER_FILE="tor-browser-${TOR_BROWSER_ARCH}-${TOR_BROWSER_VERSION}_en-US.tar.xz"
 TOR_BROWSER_URL="https://www.torproject.org/dist/torbrowser/${TOR_BROWSER_VERSION}/${TOR_BROWSER_FILE}"
 
 mkdir -p "$HOME/Downloads" "$HOME/.local/tor-browser"
