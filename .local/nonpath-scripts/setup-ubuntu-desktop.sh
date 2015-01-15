@@ -80,6 +80,7 @@ sudo aptitude install -y \
     dropbox \
     emacs24 emacs24-el emacs24-common-non-dfsg \
     etckeeper            `: track changes to /etc` \
+    fail2ban \
     git git-doc git-gui \
     git-bzr git-cvs git-svn \
     gitk \
@@ -174,6 +175,9 @@ sed -i -r \
     -e "s/^Exec=.+[[:space:]]/Exec=\/usr\/bin\/emacsclient.emacs24 --alternate-editor=\"\" --create-frame /" \
     -e "s/^TryExec=.+$/TryExec=emacsclient.emacs24/" \
     "$HOME/.local/share/applications/emacs24.desktop"
+
+# etckeeper defaults to bzr, and bzr doesn't want to add huge core dumps
+echo "X11/core" | sudo tee -a /etc/.bzrignore
 
 # Purge some nonsense
 sudo aptitude purge -y \
