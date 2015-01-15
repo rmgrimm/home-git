@@ -55,4 +55,8 @@ echo "  Extracting ${TOR_BROWSER_FILE}...done."
 rm -f "$HOME/Downloads/${TOR_BROWSER_FILE}"
 rm -f "$HOME/Downloads/${TOR_BROWSER_FILE}.asc"
 
-echo "Installing Tor Browser bundle v${TOR_BROWSER_VERSION}...done."
+echo <<EOF
+Installing Tor Browser bundle v${TOR_BROWSER_VERSION}...done.
+
+Remember to enable NoScript globally and disable cookies; have fun!
+EOF
