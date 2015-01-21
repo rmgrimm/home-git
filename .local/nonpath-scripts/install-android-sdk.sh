@@ -2,7 +2,7 @@
 
 SDK_VERSION="r24.0.1"
 
-if [ ! which java ]; then
+if ! which java ; then
     echo "Java not found; aborting..."
     exit 1
 fi
