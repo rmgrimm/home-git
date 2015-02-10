@@ -33,3 +33,5 @@ sudo aptitude full-upgrade -y
 "$COMMON_SCRIPT_PATH/setup-ubuntu-terminal-packages.sh" packages || exit 1
 
 "$COMMON_SCRIPT_PATH/setup-ubuntu-desktop-settings.sh" || exit 1
+
+echo "Done!"

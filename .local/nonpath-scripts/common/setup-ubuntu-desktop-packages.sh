@@ -85,11 +85,6 @@ install_packages () {
         \
         || exit 1
 
-    # Initialize apt-file's cache
-    if ! ls /var/cache/apt/apt-file | grep -q .; then
-        sudo apt-file update || exit 1
-    fi
-
     # Add current user to groups
     sudo adduser $(id -nu) kvm || exit 1
 

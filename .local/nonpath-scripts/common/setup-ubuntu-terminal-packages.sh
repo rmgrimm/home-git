@@ -33,6 +33,11 @@ install_packages () {
         \
         || exit 1
 
+    # Initialize apt-file's cache
+    if ! ls /var/cache/apt/apt-file | grep -q .; then
+        sudo apt-file update || exit 1
+    fi
+
     # etckeeper defaults to bzr, and bzr doesn't want to add huge core dumps
     echo "X11/core" | sudo tee -a /etc/.bzrignore
 
