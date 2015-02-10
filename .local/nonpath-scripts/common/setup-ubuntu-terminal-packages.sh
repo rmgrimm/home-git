@@ -33,6 +33,9 @@ install_packages () {
         \
         || exit 1
 
+    # etckeeper defaults to bzr, and bzr doesn't want to add huge core dumps
+    echo "X11/core" | sudo tee -a /etc/.bzrignore
+
     exit 0
 }
 

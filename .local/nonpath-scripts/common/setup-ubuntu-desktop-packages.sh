@@ -95,16 +95,22 @@ install_packages () {
 
     # Additional plugins for Keepass2
     sudo wget "http://sourceforge.net/projects/keepass-favicon/files/latest/download" \
-        -O/usr/lib/keepass2/plugins/FaviconDownloader.plgx
+        -O/usr/lib/keepass2/plugins/FaviconDownloader.plgx || exit 1
     sudo wget "https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx" \
-        -O/usr/lib/keepass2/plugins/KeePassHttp.plgx
+        -O/usr/lib/keepass2/plugins/KeePassHttp.plgx || exit 1
 
-    # TrayTOTP has a custom build to fix interoperability with notification plugin
+    # TrayTOTP has a custom build to fix interoperability with notification
+    # plugin
     rm -rf /tmp/traytotp.zip
     wget "https://github.com/rmgrimm/traytotp-kp2/releases/download/v2.0.0.5nullcheck/TrayTOTPv2.0.0.5nullcheck.zip" \
-        -O/tmp/traytotp.zip
-    sudo unzip -jo /tmp/traytotp.zip TrayTOTP.plgx -d /usr/lib/keepass2/plugins
-    rm /tmp/traytotp.zip
+        -O/tmp/traytotp.zip || exit 1
+    sudo unzip -jo /tmp/traytotp.zip TrayTOTP.plgx \
+        -d /usr/lib/keepass2/plugins || exit 1
+    rm -f /tmp/traytotp.zip
+
+    # Purge some nonsense
+    sudo aptitude purge -y \
+        unity-webapps-common || exit 1
 
     exit 0
 }
