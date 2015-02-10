@@ -112,7 +112,19 @@ Plugin {
 }
 
 Plugin {
-    type = volumealsa
+    type = tray
+}
+
+Plugin {
+    type = indicator
+    Config {
+        applications=1
+        datetime=0
+        messages=0
+        network=0
+        session=0
+        sound=0
+    }
 }
 
 Plugin {
@@ -131,19 +143,7 @@ Plugin {
 }
 
 Plugin {
-    type = tray
-}
-
-Plugin {
-    type = indicator
-    Config {
-        applications=1
-        datetime=0
-        messages=0
-        network=0
-        session=0
-        sound=0
-    }
+    type = volumealsa
 }
 
 Plugin {
