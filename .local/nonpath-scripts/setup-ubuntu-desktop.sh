@@ -18,42 +18,10 @@ if ! which aptitude >/dev/null; then
     sudo apt-get install -y aptitude
 fi
 
-# Add KeePass related PPAs
-sudo add-apt-repository -y ppa:jtaylor/keepass
-sudo add-apt-repository -y ppa:dlech/keepass2-plugins
+local COMMON_SCRIPT_PATH="$(dirname $0)/common"
 
-# Add Dropbox repo
-sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
-echo "deb http://linux.dropbox.com/ubuntu $(lsb_release -cs) main" | \
-    sudo tee /etc/apt/sources.list.d/dropbox.list
-
-# Add GetDeb repo
-wget -q "http://archive.getdeb.net/getdeb-archive.key" -O- | \
-    sudo apt-key add -
-echo "deb http://archive.getdeb.net/ubuntu $(lsb_release -cs)-getdeb games" | \
-    sudo tee /etc/apt/sources.list.d/getdeb.list
-
-# Add Mono repo (they build against wheezy only)
-sudo apt-key adv --keyserver keyserver.ubuntu.com \
-    --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-echo "deb http://download.mono-project.com/repo/debian wheezy main" | \
-    sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-
-# Add PlayOnLinux repo
-wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
-sudo wget "http://deb.playonlinux.com/playonlinux_$(lsb_release -cs).list" \
-    -O/etc/apt/sources.list.d/playonlinux.list
-
-# Add Skype repo
-sudo add-apt-repository -y \
-    "deb http://archive.canonical.com/ $(lsb_release -cs) partner"
-
-# Add Steam repo
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B05498B7
-echo "deb http://repo.steampowered.com/steam precise steam" | \
-    sudo tee /etc/apt/sources.list.d/steam.list
-echo "deb-src http://repo.steampowered.com/steam precise steam" | \
-    sudo tee -a /etc/apt/sources.list.d/steam.list
+"$COMMON_SCRIPT_PATH/setup-ubuntu-desktop-packages.sh" repos || exit 1
+"$COMMON_SCRIPT_PATH/setup-ubuntu-terminal-packages.sh" repos || exit 1
 
 # Update package information
 sudo aptitude update
@@ -61,90 +29,8 @@ sudo aptitude update
 # Upgrade everything
 sudo aptitude full-upgrade -y
 
-# Pre-accept EULAs (find more by debconf-show <package name>)
-echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula \
-    select true | sudo debconf-set-selections
-
-# Oops. Steam somehow assumes it's a decline; disabling for now
-#echo steam steam/question select "I AGREE" | \
-#    sudo debconf-set-selections
-
-# Install APT packages
-sudo aptitude install -y \
-    apt-file             `: to find where files come from` \
-    blueman              `: this is better than the ubuntu bluetooth mgr` \
-    bzr \
-    chromium-browser \
-    cpu-checker \
-    curl \
-    dropbox \
-    emacs24 emacs24-el emacs24-common-non-dfsg \
-    etckeeper            `: track changes to /etc` \
-    fail2ban \
-    git git-doc git-gui \
-    git-bzr git-cvs git-svn \
-    gitk \
-    htop \
-    keepass2 \
-    keepass2-plugin-application-indicator \
-    `: disabled for now -- keepass2-plugin-application-menu` \
-    keepass2-plugin-keeagent \
-    `: disabled for now -- keepass2-plugin-keepasshttp` \
-    language-pack-en-base \
-    language-pack-zh-hans-base \
-    libnss-myhostname \
-    lrzip                `: high compression rate for large files` \
-    lynx-cur \
-    make \
-    mesa-utils \
-    mercurial \
-    mono-complete \
-    mosh \
-    mumble \
-    openssh-server \
-    p7zip-full p7zip-rar \
-    playonlinux \
-    python-gpgme         `: so Dropbox doesn\'t complain` \
-    qemu-kvm \
-    scummvm \
-    skype \
-    sqlite3 \
-    steam \
-    texinfo \
-    tmux \
-    tree                 `: when ls is simply not enough` \
-    ttf-mscorefonts-installer \
-    unison \
-    vlc \
-    wine                 `: so PlayOnLinux won\'t complain` \
-    x11-utils            `: for xprop ` \
-    xdotool              `: for KeePass autotype` \
-    zile \
-    \
-    `: so Language Support dialog doesn\'t complain` \
-    mythes-en-au libreoffice-l10n-en-za libreoffice-help-en-gb \
-    thunderbird-locale-en-gb libreoffice-l10n-en-gb hunspell-en-ca
-
-# Initialize apt-file's cache
-if ! ls /var/cache/apt/apt-file | grep -q .; then
-    sudo apt-file update
-fi
-
-# Add current user to groups
-sudo adduser $(id -nu) kvm
-
-# Additional plugins for Keepass2
-sudo wget "http://sourceforge.net/projects/keepass-favicon/files/latest/download" \
-    -O/usr/lib/keepass2/plugins/FaviconDownloader.plgx
-sudo wget "https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx" \
-    -O/usr/lib/keepass2/plugins/KeePassHttp.plgx
-
-# TrayTOTP has a custom build to fix interoperability with notification plugin
-rm -rf /tmp/traytotp.zip
-wget "https://github.com/rmgrimm/traytotp-kp2/releases/download/v2.0.0.5nullcheck/TrayTOTPv2.0.0.5nullcheck.zip" \
-    -O/tmp/traytotp.zip
-sudo unzip -jo /tmp/traytotp.zip TrayTOTP.plgx -d /usr/lib/keepass2/plugins
-rm /tmp/traytotp.zip
+"$COMMON_SCRIPT_PATH/setup-ubuntu-desktop-packages.sh" packages || exit 1
+"$COMMON_SCRIPT_PATH/setup-ubuntu-terminal-packages.sh" packages || exit 1
 
 # Don't hide any autostart items
 sudo sed -i -e 's/NoDisplay=true/NoDisplay=false/' \
