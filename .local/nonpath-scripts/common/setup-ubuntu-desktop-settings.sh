@@ -3,12 +3,12 @@
 setup_autostart () {
     # Don't hide any autostart items
     sudo sed -i -e 's/NoDisplay=true/NoDisplay=false/' \
-        /etc/xdg/autostart/*.desktop || exit 1
+        /etc/xdg/autostart/*.desktop || return 1
 
     # Don't autostart GNOME's half-implemented SSH agent
     mkdir -p "$HOME/.config/autostart"
     cp /etc/xdg/autostart/gnome-keyring-ssh.desktop \
-        "$HOME/.config/autostart/gnome-keyring-ssh.desktop" || exit 1
+        "$HOME/.config/autostart/gnome-keyring-ssh.desktop" || return 1
     echo "X-GNOME-Autostart-enabled=false" | \
         tee -a "$HOME/.config/autostart/gnome-keyring-ssh.desktop"
 
@@ -18,20 +18,20 @@ setup_autostart () {
 
     # Let Keepass2 autostart
     cp /usr/share/applications/keepass2.desktop \
-        "$HOME/.config/autostart/keepass2.desktop" || exit 1
+        "$HOME/.config/autostart/keepass2.desktop" || return 1
     echo "X-GNOME-Autostart-enabled=true" | \
         tee -a "$HOME/.config/autostart/keepass2.desktop"
 
     # Copy emacs desktop file, then set it to use emacsclient
     mkdir -p "$HOME/.local/share/applications"
     cp /usr/share/applications/emacs24.desktop \
-        "$HOME/.local/share/applications/emacs24.desktop" || exit 1
+        "$HOME/.local/share/applications/emacs24.desktop" || return 1
     sed -i -r \
         -e "s/^Exec=.+[[:space:]]/Exec=\/usr\/bin\/emacsclient.emacs24 --alternate-editor=\"\" --create-frame /" \
         -e "s/^TryExec=.+$/TryExec=emacsclient.emacs24/" \
-        "$HOME/.local/share/applications/emacs24.desktop" || exit 1
+        "$HOME/.local/share/applications/emacs24.desktop" || return 1
 
-    exit 0
+    return 0
 }
 
 general_settings () {
@@ -39,21 +39,33 @@ general_settings () {
     gsettings set com.canonical.Unity.Lenses remote-content-search 'none'
 
     # Otherwise set up preferred look/feel of desktop
+    gsettings set org.freedesktop.ibus.general engines-order "[ \
+        'xkb:us::eng', \
+        'libpinyin' ]"
+    gsettings set org.freedesktop.ibus.general preload-engine-mode 0
+    gsettings set org.freedesktop.ibus.general preload-engines "[ \
+        'libpinyin', \
+        'xkb:us::eng' ]"
+    gsettings set org.freedesktop.ibus.general preload-engines-inited true
+    gsettings set org.freedesktop.ibus.general.hotkey triggers "[ \
+        '<Super>space' ]"
     gsettings set org.freedesktop.ibus.panel lookup-table-orientation 0
     gsettings set org.gnome.desktop.input-sources sources "[ \
         ('xkb', 'us'), \
-        ('ibus', 'pinyin')]"
+        ('ibus', 'libpinyin') ]"
     gsettings set org.gnome.desktop.background color-shading-type 'solid'
     gsettings set org.gnome.desktop.background picture-options 'none'
     gsettings set org.gnome.desktop.background primary-color '#000000000000'
     gsettings set org.gnome.desktop.media-handling automount false
     gsettings set org.gnome.desktop.media-handling automount-open false
     gsettings set org.gnome.desktop.wm.keybindings switch-input-source "[ \
-        '<Super>space']"
+        '<Super>space' ]"
     gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward \
-        "['<Shift><Super>space']"
+        "['<Shift><Super>space' ]"
+    gsettings set org.gnome.desktop.wm.preferences audible-bell false
+    gsettings set org.gnome.desktop.wm.preferences visual-bell true
 
-    exit 0
+    return 0
 }
 
 unity_settings () {
@@ -109,13 +121,13 @@ unity_settings () {
         /apps/gnome-terminal/global/use_mnemonics \
         false
 
-    exit 0
+    return 0
 }
 
 lxde_settings () {
     # Most of this is handled by settings files in $HOME/.config/...
 
-    exit 0
+    return 0
 }
 
 setup_autostart || exit 1
