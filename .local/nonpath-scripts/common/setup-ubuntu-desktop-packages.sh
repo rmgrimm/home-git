@@ -84,6 +84,13 @@ install_packages () {
         `: so Language Support dialog doesn\'t complain` \
         mythes-en-au libreoffice-l10n-en-za libreoffice-help-en-gb \
         thunderbird-locale-en-gb libreoffice-l10n-en-gb hunspell-en-ca \
+        hyphen-en-us ibus-sunpinyin firefox-locale-zh-hans \
+        language-pack-gnome-zh-hans libreoffice-help-zh-cn \
+        fonts-arphic-uming ibus-table-wubi myspell-en-za \
+        thunderbird-locale-zh-hans libreoffice-help-en-us \
+        libreoffice-l10n-zh-cn mythes-en-us fonts-arphic-ukai \
+        thunderbird-locale-en-us myspell-en-au myspell-en-gb \
+        thunderbird-locale-zh-cn openoffice.org-hyphenation \
         \
         || return 1
 
