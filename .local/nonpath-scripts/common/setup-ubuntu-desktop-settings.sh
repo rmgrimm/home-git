@@ -134,7 +134,7 @@ setup_autostart || exit 1
 general_settings || exit 1
 
 case "$GDMSESSION" in
-    Ubuntu) unity_settings || exit 1 ;;
+    ubuntu) unity_settings || exit 1 ;;
     Lubuntu) lxde_settings || exit 1 ;;
 esac
 
