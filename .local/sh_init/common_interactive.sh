@@ -29,13 +29,21 @@ fi
 
 # Setup Node Version Manager only for amd64
 if [ $(uname -m) == 'x86_64' -a -e "$HOME/.local/nvm/nvm.sh" ]; then
-    . "$HOME/.local/nvm/nvm.sh"
-    export NVM_DIR="$HOME/.local/node"
-    mkdir -p "$HOME/.local/node"
-    nvm use default
+    ,load-nvm() {
+        . "$HOME/.local/nvm/nvm.sh"
+        export NVM_DIR="$HOME/.local/node"
+        mkdir -p "$HOME/.local/node"
+        nvm use default
 
-    if [ -e "$HOME/.local/nvm/bash_completion" ]; then
-        . "$HOME/.local/nvm/bash_completion"
+        if [ -e "$HOME/.local/nvm/bash_completion" ]; then
+            . "$HOME/.local/nvm/bash_completion"
+        fi
+    }
+
+    if [ -n "$Color_Off" ]; then
+        echo -e "Note: NVM can be loaded with "$BCyan",load-nvm"$Color_Off
+    else
+        echo "Note: NVM can be loaded with ,load-nvm"
     fi
 fi
 
@@ -46,6 +54,6 @@ if [ -e "$HOME/.local/sshag/sshag.sh" ]; then
 fi
 
 # Use sensible editor with git
-if which sensible-editor >/dev/null; then
+if which sensible-editor >/dev/null 2>&1; then
     export GIT_EDITOR="$(which sensible-editor)"
 fi

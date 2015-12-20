@@ -42,7 +42,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm|xterm-color) color_prompt=yes;;
+    xterm|xterm-color|xterm-256color) color_prompt=yes;;
     screen) color_prompt=yes;;
 esac
 
