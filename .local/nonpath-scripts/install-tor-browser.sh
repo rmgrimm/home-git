@@ -5,8 +5,17 @@ VERSION_REGEXP="[[:digit:]]+\\.[[:digit:]]+\.[[:digit:]]+"
 case $(uname -i) in
     x86_64) TOR_BROWSER_ARCH=linux64 ;;
     x86) TOR_BROWSER_ARCH=linux32 ;;
-    *) echo "unknown arch; aborting install..."; exit 1
 esac
+
+case $(uname -m) in
+    x86_64) TOR_BROWSER_ARCH=linux64 ;;
+    x86) TOR_BROWSER_ARCH=linux32 ;;
+esac
+
+if [ x"$TOR_BROWSER_ARCH" = x"" ]; then
+    echo "unknown arch; aborting install..."
+    exit 1
+fi
 
 if [ x"$1" = x"" ]; then
     TOR_BROWSER_VERSION=$(
@@ -47,7 +56,7 @@ echo "  Downloading key and verifying ${TOR_BROWSER_FILE}...done."
 
 echo "  Extracting ${TOR_BROWSER_FILE}..."
 mkdir -p "$HOME/.local/tor-browser"
-tar --extract --xz --strip-components=1 \
+tar --extract --auto-compress --strip-components=1 \
     --directory "$HOME/.local/tor-browser/" \
     --file "$HOME/Downloads/${TOR_BROWSER_FILE}"
 echo "  Extracting ${TOR_BROWSER_FILE}...done."
