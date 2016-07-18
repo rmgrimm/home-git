@@ -12,6 +12,6 @@ end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-# .bashrc uses 4 spaces
-[.bashrc]
+# .bashrc and .profile use 4 spaces
+[{.bashrc,.profile}]
 indent_size = 4
