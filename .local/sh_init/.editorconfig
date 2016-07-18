@@ -1,0 +1,5 @@
+# EditorConfig
+# http://editorconfig.org
+
+[*.sh]
+indent_size = 4
