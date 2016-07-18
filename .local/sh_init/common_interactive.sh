@@ -27,24 +27,37 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Setup Node Version Manager only for amd64
-if [ $(uname -m) == 'x86_64' -a -e "$HOME/.local/nvm/nvm.sh" ]; then
-    ,load-nvm() {
-        . "$HOME/.local/nvm/nvm.sh"
-        export NVM_DIR="$HOME/.local/node"
-        mkdir -p "$HOME/.local/node"
-        nvm use default
+# Setup Node Version Manager only for specific platforms
+if [ -e "$HOME/.local/nvm/nvm.sh" ]; then
+    case $(uname -m) in
+        x86_64|armv7l)
+            ,load-nvm() {
+                . "$HOME/.local/nvm/nvm.sh"
+                export NVM_DIR="$HOME/.local/node"
+                mkdir -p "$HOME/.local/node"
+                nvm use default
 
-        if [ -e "$HOME/.local/nvm/bash_completion" ]; then
-            . "$HOME/.local/nvm/bash_completion"
-        fi
-    }
+                if [ -e "$HOME/.local/nvm/bash_completion" ]; then
+                    . "$HOME/.local/nvm/bash_completion"
+                fi
+            }
 
-    if [ -n "$Color_Off" ]; then
-        echo -e "Note: NVM can be loaded with "$BCyan",load-nvm"$Color_Off
-    else
-        echo "Note: NVM can be loaded with ,load-nvm"
-    fi
+            if [ -n "$Color_Off" ]; then
+                echo -e "Note: NVM can be loaded with" \
+                     $BCyan",load-nvm"$Color_Off
+            else
+                echo "Note: NVM can be loaded with ,load-nvm"
+            fi
+            ;;
+        *)
+            if [ -n "$Color_Off" ]; then
+                echo -e "Note: NVM not tested on " \
+                     $BCyan"$(uname -m)"$Color_Off";" \
+                     "NVM unavailable"
+            else
+                echo "Note: NVM not tested on $(uname -m); NVM unavailable"
+            fi
+    esac
 fi
 
 # Setup SSH agent
