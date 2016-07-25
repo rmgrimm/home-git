@@ -28,11 +28,13 @@ popd
 rsync -av "$HOME/.local/git-home-temp/" "$HOME/"
 rm -rf "$HOME/.local/git-home-temp"
 
-if [ "$(id -nu)" = "robert" ]; then
-    pushd "$HOME"
-    git remote set-url --push origin "ssh://git@github.com/rmgrimm/home-git.git"
-    popd
-    pushd "$HOME/.emacs.d"
-    git remote set-url --push origin "ssh://git@github.com/rmgrimm/.emacs.d.git"
-    popd
-fi
+# Disabled for now
+#
+# if [ "$(id -nu)" = "robert" ]; then
+#     pushd "$HOME"
+#     git remote set-url --push origin "ssh://git@github.com/rmgrimm/home-git.git"
+#     popd
+#     pushd "$HOME/.emacs.d"
+#     git remote set-url --push origin "ssh://git@github.com/rmgrimm/.emacs.d.git"
+#     popd
+# fi
