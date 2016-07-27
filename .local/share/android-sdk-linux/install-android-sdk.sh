@@ -15,16 +15,23 @@ if [ ! -d "$HOME/.local/share/android-sdk-linux/tools" ]; then
 fi
 
 case "$(uname -m)" in
-x86|x86_64) ;;
+x86|x86_64)
+    # swt.jar comes by default with Google package for x86/x64
+    ;;
 armv7l)
     if [ ! -e "android-sdk-linux/tools/lib/arm/swt.jar" ]; then
-        ARM_SWT_PACKAGE_NAME=libswt-gtk-4-java
         pushd "android-sdk-linux"
+
+        # Download swt.jar from the Debian package
+        ARM_SWT_PACKAGE_NAME=libswt-gtk-4-java
         mkdir -p tools/lib/arm
         apt-get download $ARM_SWT_PACKAGE_NAME
         ARM_SWT_VERSION=$(echo "$ARM_SWT_PACKAGE_NAME"*.deb | cut -d_ -f2 | cut -d- -f1)
         dpkg --fsys-tarfile "$ARM_SWT_PACKAGE_NAME"*.deb | tar xfO - './usr/lib/java/swt-gtk-'$ARM_SWT_VERSION'.jar' > tools/lib/arm/swt.jar
         rm -f "$ARM_SWT_PACKAGE_NAME"*.deb
+
+        # TODO(rgrimm): Get/build platform tools for ARM
+        # (or use binfmt-support with qemu-user-static + i386 arch)
         popd
     fi
     ;;
