@@ -6,8 +6,8 @@
 case $- in
 *i*) ;;
  *)
-    if [ -x "$HOME/.local/sh_init/common_noninteractive.sh" ]; then
-        . "$HOME/.local/sh_init/common_noninteractive.sh"
+    if [ -x "$HOME/.local/share/sh_init/common_noninteractive.sh" ]; then
+        . "$HOME/.local/share/sh_init/common_noninteractive.sh"
     fi
     return
     ;;
@@ -63,9 +63,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    . "$HOME/.local/sh_init/ps1_color.sh"
+    . "$HOME/.local/share/sh_init/ps1_color.sh"
 else
-    . "$HOME/.local/sh_init/ps1_nocolor.sh"
+    . "$HOME/.local/share/sh_init/ps1_nocolor.sh"
 fi
 unset color_prompt force_color_prompt
 
@@ -120,6 +120,6 @@ if ! shopt -oq posix; then
 fi
 
 # Load custom common init
-if [ -x "$HOME/.local/sh_init/common_interactive.sh" ]; then
-    . "$HOME/.local/sh_init/common_interactive.sh"
+if [ -x "$HOME/.local/share/sh_init/common_interactive.sh" ]; then
+    . "$HOME/.local/share/sh_init/common_interactive.sh"
 fi

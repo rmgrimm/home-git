@@ -16,7 +16,7 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 else
     # Load custom common init
-    if [ -x "$HOME/.local/sh_init/common_noninteractive.sh" ]; then
-        . "$HOME/.local/sh_init/common_noninteractive.sh"
+    if [ -x "$HOME/.local/share/sh_init/common_noninteractive.sh" ]; then
+        . "$HOME/.local/share/sh_init/common_noninteractive.sh"
     fi
 fi

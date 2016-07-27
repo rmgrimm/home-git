@@ -1,8 +1,8 @@
 [submodule ".local/nvm"]
-	path = .local/nvm
+	path = .local/share/nvm
 	url = https://github.com/creationix/nvm.git
 [submodule ".local/sshag"]
-	path = .local/sshag
+	path = .local/share/sshag
 	url = https://github.com/intuited/sshag.git
 [submodule ".emacs.d"]
 	path = .emacs.d

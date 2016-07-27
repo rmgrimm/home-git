@@ -1,18 +1,23 @@
 #!/bin/bash
 
 # Check for android studio
-if [ -d "$HOME/.local/android-studio/bin" ]; then
-    PATH="$HOME/.local/android-studio/bin:$PATH"
+if [ -d "$HOME/.local/share/android-studio/bin" ]; then
+    PATH="$HOME/.local/share/android-studio/bin:$PATH"
 fi
 
 # Also check for android tools
-if [ -d "$HOME/.local/android-sdk-linux/tools" ]; then
-    export ANDROID_HOME="$HOME/.local/android-sdk-linux"
-    PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+if [ -z "$ANDROID_HOME" ]; then
+    ANDROID_HOME="$HOME/.local/share/android-sdk-linux"
+    if [ -d "$ANDROID_HOME/tools" ]; then
+        export ANDROID_HOME
+        PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+    else
+        unset ANDROID_HOME
+    fi
 fi
 
 # Set up Oracle JDK
-if [ -d "$HOME/.local/java" ]; then
+if [ -z "$JAVA_HOME" -a -d "$HOME/.local/java" ]; then
     LATEST_JDK="$(/usr/bin/find $HOME/.local/java -maxdepth 1 -mindepth 1 -type d -iname jdk\* | /usr/bin/sort -r | /usr/bin/head -n 1)"
     if [ -n "$LATEST_JDK" ]; then
         export JAVA_HOME="$LATEST_JDK"
@@ -22,6 +27,7 @@ if [ -d "$HOME/.local/java" ]; then
             PATH="$LATEST_JDK/bin:$PATH"
         fi
     fi
+    unset LATEST_JDK
 fi
 
 # Set PATH so it includes user's private bin if it exists

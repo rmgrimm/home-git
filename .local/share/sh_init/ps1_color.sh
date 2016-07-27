@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source "$HOME/.local/sh_init/colors.sh"
-source "$HOME/.local/sh_init/ps1_elements.sh"
+source "$HOME/.local/share/sh_init/colors.sh"
+source "$HOME/.local/share/sh_init/ps1_elements.sh"
 
 PS1ColorUser=$PSColorPre$Cyan$PSColorPost
 PS1ColorUser=$PS1ColorUser$PS1User

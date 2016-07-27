@@ -55,9 +55,9 @@ gpg --verify "$HOME/Downloads/${TOR_BROWSER_FILE}.asc" \
 echo "  Downloading key and verifying ${TOR_BROWSER_FILE}...done."
 
 echo "  Extracting ${TOR_BROWSER_FILE}..."
-mkdir -p "$HOME/.local/tor-browser"
+mkdir -p "$HOME/.local/share/tor-browser"
 tar --extract --auto-compress --strip-components=1 \
-    --directory "$HOME/.local/tor-browser/" \
+    --directory "$HOME/.local/share/tor-browser/" \
     --file "$HOME/Downloads/${TOR_BROWSER_FILE}"
 echo "  Extracting ${TOR_BROWSER_FILE}...done."
 
