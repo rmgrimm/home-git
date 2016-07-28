@@ -9,4 +9,6 @@ __rmg_d_run jess/tor-browser jess/tor-browser - \
             -e DISPLAY=unix$DISPLAY \
             -e GDK_SCALE \
             -e GDK_DPI_SCALE \
-            --device /dev/snd
+            --device /dev/snd \
+            -- \
+            "$@"
