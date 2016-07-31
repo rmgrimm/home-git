@@ -13,7 +13,7 @@ if [ "$COLORTERM" = "gnome-terminal" ]; then
 fi
 
 # Start with all the non-interactive stuff
-if [ -x "$HOME/.local/share/sh_init/common_noninteractive.sh" ]; then
+if [ -r "$HOME/.local/share/sh_init/common_noninteractive.sh" ]; then
     . "$HOME/.local/share/sh_init/common_noninteractive.sh"
 fi
 
@@ -23,7 +23,7 @@ stty start undef
 stty stop undef
 
 # Setup Node Version Manager only for specific platforms
-if [ -e "$HOME/.local/share/nvm/nvm.sh" ]; then
+if [ -r "$HOME/.local/share/nvm/nvm.sh" ]; then
     case $(uname -m) in
     x86_64|armv7l)
         ,load-nvm() {
@@ -32,7 +32,7 @@ if [ -e "$HOME/.local/share/nvm/nvm.sh" ]; then
             mkdir -p "$HOME/.local/share/node"
             nvm use default
 
-            if [ -e "$HOME/.local/share/nvm/bash_completion" ]; then
+            if [ -r "$HOME/.local/share/nvm/bash_completion" ]; then
                 . "$HOME/.local/share/nvm/bash_completion"
             fi
         }
@@ -56,7 +56,7 @@ if [ -e "$HOME/.local/share/nvm/nvm.sh" ]; then
 fi
 
 # Setup SSH agent
-if [ -e "$HOME/.local/share/sshag/sshag.sh" ]; then
+if [ -r "$HOME/.local/share/sshag/sshag.sh" ]; then
     . "$HOME/.local/share/sshag/sshag.sh"
     sshag_init
 fi

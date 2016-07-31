@@ -37,11 +37,22 @@ fi
 
 # Set up some docker helpers (override other private bin items)
 if which docker >/dev/null 2>&1 && \
-       docker images -q >/dev/null 2>&1 && \
-       [ -d "$HOME/.local/bin/docker" ]; then
-    PATH="$HOME/.local/bin/docker:$PATH"
+       docker images -q >/dev/null 2>&1 ; then
+    # Command-line docker
+    if [ -d "$HOME/.local/bin/docker" ]; then
+        PATH="$HOME/.local/bin/docker:$PATH"
 
-    if [ -f "$HOME/.local/bin/docker/.docker-init.sh" ]; then
-        . "$HOME/.local/bin/docker/.docker-init.sh"
+        if [ -r "$HOME/.local/bin/docker/.docker-init.sh" ]; then
+            . "$HOME/.local/bin/docker/.docker-init.sh"
+        fi
+    fi
+
+    # X11-based docker
+    if [ -n "$DISPLAY" -a -d "$HOME/.local/bin/docker-x" ]; then
+        PATH="$HOME/.local/bin/docker-x:$PATH"
+
+        if [ -r "$HOME/.local/bin/docker-x/.docker-init.sh" ]; then
+            . "$HOME/.local/bin/docker-x/.docker-init.sh"
+        fi
     fi
 fi
