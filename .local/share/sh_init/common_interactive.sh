@@ -24,6 +24,10 @@ if [ -r "$HOME/.local/share/sh_init/common_noninteractive.sh" ]; then
     . "$HOME/.local/share/sh_init/common_noninteractive.sh"
 fi
 
+if [ "$WINDOWS_SUBSYSTEM_FOR_LINUX" = "1" ]; then
+    echo -e "Running in "$IBlue"Windows Subsystem for Linux"$Color_Off"."
+fi
+
 # Turn off the annoying XON and XOFF from ctrl+s and ctrl+q
 stty ixoff -ixon
 stty start undef
@@ -63,7 +67,8 @@ if [ -r "$HOME/.local/share/nvm/nvm.sh" ]; then
 fi
 
 # Setup SSH agent
-if [ -r "$HOME/.local/share/sshag/sshag.sh" ]; then
+if [ -z "$WINDOWS_SUBSYSTEM_FOR_LINUX" -a \
+    -r "$HOME/.local/share/sshag/sshag.sh" ]; then
     . "$HOME/.local/share/sshag/sshag.sh"
     sshag_init
 fi

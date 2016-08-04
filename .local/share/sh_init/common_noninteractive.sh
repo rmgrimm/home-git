@@ -3,6 +3,17 @@
 # Check for Windows Subsystem for Linux (WSL; aka "Bash on Windows 10")
 if grep -qF Microsoft /proc/version ; then
     export WINDOWS_SUBSYSTEM_FOR_LINUX=1
+
+    # Set up DISPLAY on WSL
+    if [ -z "$DISPLAY" ]; then
+        export DISPLAY=localhost:0
+        export LIBGL_ALWAYS_INDIRECT=1
+    fi
+
+    if which xrdb >/dev/null 2>&1 && \
+        [ -r "$HOME/.Xresources" ]; then
+        xrdb -merge "$HOME/.Xresources"
+    fi
 fi
 
 # Check for android studio
