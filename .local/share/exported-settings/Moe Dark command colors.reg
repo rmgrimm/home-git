@@ -1,0 +1,54 @@
+Windows Registry Editor Version 5.00
+
+; Registry file that maps the Moe Dark palette to the 16 avaliable colors
+; in a Windows command prompt. Note, hex values in the table are RGB but byte
+; ordering of a DWORD is BGR, e.g. "ColorTable<##>"=dword:00<B><G><R>
+;
+; Moe color table from https://github.com/kuanyui/moe-theme.el.
+; Based on registry file from
+; https://github.com/neilpa/cmd-colors-solarized/blob/bfdb9f5a0752dd047c77702585375aabf7f94f3d/solarized-dark.reg
+;
+; NR  cmd.exe      PowerShell   MOE DARK   HEX      DWORD
+; --  -------      -----------  ---------  -------  --------
+; 00  Black        Black        black-5    #303030  00303030
+; 01  Blue         DarkBlue     blue-4     #005faf  00af5f00
+; 02  Green        DarkGreen    green-6*   #004b00  00004b00
+; 03  Aqua         DarkCyan     cyan-7     #236f73  00736f23
+; 04  Red          DarkRed      red-3      #a40000  000000a4
+; 05  Purple       DarkMagenta  magenta-3  #ff1f8b  008b1fff
+; 06  Yellow       DarkYellow   yellow-4   #875f00  00005f87
+; 07  White        Gray         white-3    #b2b2b2  00b2b2b2
+;
+; 08  Gray         DarkGray     black-2-5  #6c6c6c  006c6c6c
+; 09  LightBlue    Blue         blue-1     #5fafd7  00d7af5f
+; 10  LightGreen   Green        green-1    #afff00  0000ffaf
+; 11  LightAqua    Cyan         cyan-1     #87ffff  00ffff87
+; 12  LightRed     Red          red-1      #ef2929  002929ef
+; 13  LightPurple  Magenta      magenta-1  #ff7bbb  00bb7bff
+; 14  LightYellow  Yellow       yellow-1   #fce94f  004fe9fc
+; 15  BrightWhite  White        white-1    #c6c6c6  00c6c6c6
+;
+; Note: green-6 doesn't exist in Moe Dark; it's custom here
+; to deal with unreadable color combinations on Windows
+
+[HKEY_CURRENT_USER\Console]
+"ColorTable00"=dword:00303030
+"ColorTable01"=dword:00af5f00
+"ColorTable02"=dword:00004b00
+"ColorTable03"=dword:00736f23
+"ColorTable04"=dword:000000a4
+"ColorTable05"=dword:008b1fff
+"ColorTable06"=dword:00005f87
+"ColorTable07"=dword:00b2b2b2
+
+"ColorTable08"=dword:006c6c6c
+"ColorTable09"=dword:00d7af5f
+"ColorTable10"=dword:0000ffaf
+"ColorTable11"=dword:00ffff87
+"ColorTable12"=dword:002929ef
+"ColorTable13"=dword:00bb7bff
+"ColorTable14"=dword:004fe9fc
+"ColorTable15"=dword:00c6c6c6
+
+"ScreenColors"=dword:00000007
+"PopupColors"=dword:000000f5

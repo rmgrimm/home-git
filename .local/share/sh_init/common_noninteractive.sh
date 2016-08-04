@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Check for Windows Subsystem for Linux (WSL; aka "Bash on Windows 10")
+if grep -qF Microsoft /proc/version ; then
+    export WINDOWS_SUBSYSTEM_FOR_LINUX=1
+fi
+
 # Check for android studio
 if [ -d "$HOME/.local/share/android-studio/bin" ]; then
     PATH="$HOME/.local/share/android-studio/bin:$PATH"

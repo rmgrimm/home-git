@@ -1,7 +1,14 @@
 #!/bin/bash
 
-# Gnome Terminal still reports 8color mode... ugh. why?
-if [ "$COLORTERM" = "gnome-terminal" ]; then
+# Check for Windows Subsystem for Linux (WSL; aka "Bash on Windows 10")
+# (duplicated here to also fix colors on WSL)
+if grep -qF Microsoft /proc/version; then
+    export WINDOWS_SUBSYSTEM_FOR_LINUX=1
+fi
+
+# Gnome Terminal and WSL both still report 8color mode... ugh. why?
+if [ "$COLORTERM" = "gnome-terminal" -o \
+        "$WINDOWS_SUBSYSTEM_FOR_LINUX" = "1" ]; then
     # Yes, this is a hack; the terminal should report this properly.
     case $TERM in
         *-256color) ;;
