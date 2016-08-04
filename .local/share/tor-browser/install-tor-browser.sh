@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION_REGEXP="[[:digit:]]+\\.[[:digit:]]+\.[[:digit:]]+"
+VERSION_REGEXP='[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'
 
 case $(uname -i) in
     x86_64) TOR_BROWSER_ARCH=linux64 ;;
@@ -22,7 +22,8 @@ if [ x"$1" = x"" ]; then
         curl --silent \
             "https://www.torproject.org/projects/torbrowser/RecommendedTBBVersions" \
             | grep --only-matching --extended-regexp \
-            --regexp="\".+\\-Linux\"," \
+                   --regexp="\"${VERSION_REGEXP}\\-Linux\"," \
+            | sort --reverse --sort=numeric \
             | head --lines=1)
     TOR_BROWSER_VERSION=${TOR_BROWSER_VERSION:1:-8}
 else
@@ -33,6 +34,7 @@ echo "Installing Tor Browser bundle v${TOR_BROWSER_VERSION}..."
 
 TOR_BROWSER_FILE="tor-browser-${TOR_BROWSER_ARCH}-${TOR_BROWSER_VERSION}_en-US.tar.xz"
 TOR_BROWSER_URL="https://www.torproject.org/dist/torbrowser/${TOR_BROWSER_VERSION}/${TOR_BROWSER_FILE}"
+TOR_BROWSER_KEY="0x4E2C6E8793298290"
 
 mkdir -p "$HOME/Downloads"
 rm -f "$HOME/Downloads/${TOR_BROWSER_FILE}"
@@ -47,7 +49,7 @@ echo "  Downloading ${TOR_BROWSER_FILE}...done."
 
 echo "  Downloading key and verifying ${TOR_BROWSER_FILE}..."
 gpg --keyserver x-hkp://pool.sks-keyservers.net \
-    --recv-keys 0x416F061063FEE659 \
+    --recv-keys ${TOR_BROWSER_KEY} \
     || (echo "download failed; aborting..."; false) || exit 1
 gpg --verify "$HOME/Downloads/${TOR_BROWSER_FILE}.asc" \
     "$HOME/Downloads/${TOR_BROWSER_FILE}" \
