@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Check for Windows Subsystem for Linux (WSL; aka "Bash on Windows 10")
-if grep -qF Microsoft /proc/version ; then
+if grep -qF Microsoft /proc/version || \
+    find /dev -mindepth 1 -maxdepth 1 | grep -qF lxss
+then
     export WINDOWS_SUBSYSTEM_FOR_LINUX=1
 
     # Set up DISPLAY on WSL
@@ -11,8 +13,9 @@ if grep -qF Microsoft /proc/version ; then
     fi
 
     if which xrdb >/dev/null 2>&1 && \
-        [ -r "$HOME/.Xresources" ]; then
-        xrdb -merge "$HOME/.Xresources"
+        [ -r "$HOME/.Xresources" ]
+    then
+        xrdb -merge "$HOME/.Xresources" >/dev/null 2>&1
     fi
 fi
 
@@ -53,7 +56,8 @@ fi
 
 # Set up some docker helpers (override other private bin items)
 if which docker >/dev/null 2>&1 && \
-       docker images -q >/dev/null 2>&1 ; then
+       docker images -q >/dev/null 2>&1
+then
     # Command-line docker
     if [ -d "$HOME/.local/bin/docker" ]; then
         PATH="$HOME/.local/bin/docker:$PATH"

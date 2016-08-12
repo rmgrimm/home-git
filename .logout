@@ -1,0 +1,6 @@
+# ~/.logout: executed by the command interpreter when login shell exits
+
+# Load custom common deinit
+if [ "$SHLVL" = 1 -a -x "$HOME/.local/share/sh_init/common_logout.sh" ]; then
+    . "$HOME/.local/share/sh_init/common_logout.sh"
+fi
