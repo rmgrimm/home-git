@@ -13,5 +13,5 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Several dot-files use 4 spaces
-[{.bashrc,.bash_logout,.logout,.profile}]
+[{.bashrc,.bash_logout,.logout,.profile,.xsessionrc}]
 indent_size = 4

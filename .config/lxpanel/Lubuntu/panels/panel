@@ -57,6 +57,9 @@ Plugin {
         Button {
             id=/home/robert/.local/share/applications/emacs24.desktop
         }
+        Button {
+            id=/home/robert/.local/share/applications/dockerized-firefox.desktop
+        }
     }
 }
 
@@ -165,4 +168,3 @@ Plugin {
         }
     }
 }
-

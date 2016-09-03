@@ -1,0 +1,16 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dockerized Firefox
+Comment=Browse the World Wide Web from inside a Docker container
+GenericName=Dockerized Web Browser
+X-GNOME-FullName=Dockerized Firefox Web Browser
+Exec=,d-firefox.sh %u
+TryExec=,d-firefox.sh
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=dockerized-firefox
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=Firefox
+StartupNotify=true

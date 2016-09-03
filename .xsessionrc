@@ -1,11 +1,22 @@
 #!/bin/sh
 
-if [ -e "$HOME/.local/share/sshag/sshag.sh" ]; then
-    if [ ! -e "/etc/X11/Xsession.options" ] ||
-       ! grep -q "^use-ssh-agent$" "/etc/X11/Xsession.options" ||
-       [ ! -e "/usr/share/upstart/sessions/ssh-agent.conf" ]; then
-        /bin/bash "$HOME/.local/share/sshag/sshag.sh"
+if [ -r "$HOME/.local/share/sshag/sshag.sh" ]; then
+    SHOULD_LOAD_SSHAG=y
+
+    if [ -e "/usr/share/upstart/sessions/ssh-agent.conf" ]; then
+        SHOULD_LOAD_SSHAG=n
     fi
+
+    if [ -r "/etc/X11/Xsession.options" ] && \
+           grep -q "^use-ssh-agent$" "/etc/X11/Xsession.options"; then
+        SHOULD_LOAD_SSHAG=n
+    fi
+
+    if [ "$SHOULD_LOAD_SSHAG" = "y" ]; then
+        echo "Starting SSHAG" >&2
+        /bin/bash "$HOME/.local/share/sshag/sshag.sh" >&2
+    fi
+    unset SHOULD_LOAD_SSHAG
 fi
 
 #if [ -x "/usr/bin/emacs24" ]; then
