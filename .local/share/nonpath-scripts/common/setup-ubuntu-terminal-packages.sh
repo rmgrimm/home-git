@@ -11,7 +11,7 @@ install_packages () {
         cpu-checker \
         curl \
         emacs24 emacs24-el emacs24-common-non-dfsg \
-        etckeeper            `: track changes to /etc` \
+        `: etckeeper `       `: track changes to /etc` \
         fail2ban \
         git git-doc \
         git-bzr git-cvs git-svn \
@@ -39,7 +39,7 @@ install_packages () {
     fi
 
     # etckeeper defaults to bzr, and bzr doesn't want to add huge core dumps
-    echo "X11/core" | sudo tee -a /etc/.bzrignore
+    # echo "X11/core" | sudo tee -a /etc/.bzrignore
 
     exit 0
 }

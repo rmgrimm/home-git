@@ -2,7 +2,8 @@
 
 . .docker-init.sh
 
-mkdir -p "$HOME/.local/share/firefox/"{cache,mozilla} 2>/dev/null
+mkdir -p "$HOME/.local/share/firefox/cache" 2>/dev/null
+mkdir -p "$HOME/.local/share/firefox/mozilla" 2>/dev/null
 
 __rmg_d_run jess/firefox jess/firefox rmgrimm/armhf-firefox \
             --rmg-with-x \

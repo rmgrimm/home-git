@@ -6,7 +6,8 @@ add_repos () {
     sudo add-apt-repository -y ppa:dlech/keepass2-plugins || return 1
 
     # Add Dropbox repo
-    sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E || return 1
+    gpg --keyserver hkp://pgp.mit.edu --recv 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+    gpg --export --armor 1C61A2656FB57B7E4DE0F4C1FC918B335044912E | sudo apt-key add - || return 1
     echo "deb http://linux.dropbox.com/ubuntu $(lsb_release -cs) main" | \
         sudo tee /etc/apt/sources.list.d/dropbox.list
 
@@ -17,15 +18,15 @@ add_repos () {
         sudo tee /etc/apt/sources.list.d/getdeb.list
 
     # Add Mono repo (they build against wheezy only)
-    sudo apt-key adv --keyserver keyserver.ubuntu.com \
-        --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF || return 1
+    gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    gpg --export --armor 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF | sudo apt-key add - || return 1
     echo "deb http://download.mono-project.com/repo/debian wheezy main" | \
         sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 
     # Add PlayOnLinux repo
-    wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add - \
+    wget -4 -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add - \
         || return 1
-    sudo wget "http://deb.playonlinux.com/playonlinux_$(lsb_release -cs).list" \
+    sudo wget -4 "http://deb.playonlinux.com/playonlinux_$(lsb_release -cs).list" \
         -O/etc/apt/sources.list.d/playonlinux.list
 
     # Add Skype repo
@@ -34,8 +35,8 @@ add_repos () {
         return 1
 
     # Add Steam repo
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B05498B7 || \
-        return 1
+    gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv B05498B7
+    gpg --export --armor B05498B7 | sudo apt-key add - || return 1
     echo "deb http://repo.steampowered.com/steam precise steam" | \
         sudo tee /etc/apt/sources.list.d/steam.list
     echo "deb-src http://repo.steampowered.com/steam precise steam" | \

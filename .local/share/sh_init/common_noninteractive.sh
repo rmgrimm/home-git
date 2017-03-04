@@ -68,11 +68,11 @@ then
     fi
 
     # X11-based docker
-    if [ -n "$DISPLAY" -a -d "$HOME/.local/bin/docker-x" ]; then
-        PATH="$HOME/.local/bin/docker-x:$PATH"
+    # if [ -n "$DISPLAY" -a -d "$HOME/.local/bin/docker-x" ]; then
+    #     PATH="$HOME/.local/bin/docker-x:$PATH"
 
-        if [ -r "$HOME/.local/bin/docker-x/.docker-init.sh" ]; then
-            . "$HOME/.local/bin/docker-x/.docker-init.sh"
-        fi
-    fi
+    #     if [ -r "$HOME/.local/bin/docker-x/.docker-init.sh" ]; then
+    #         . "$HOME/.local/bin/docker-x/.docker-init.sh"
+    #     fi
+    # fi
 fi
