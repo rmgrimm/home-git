@@ -24,7 +24,8 @@ __rmg_d_run rednoah/filebot rednoah/filebot - \
             -- \
             -rename \
             --db TheTVDB \
-            --action test \
+            --action move \
+            --conflict skip \
             --format "/volume1/filebot-output/{n.colon(' - ')}/{episode.special ? 'Specials' : 'Season '+s.pad(2)}/{n.colon(' - ')} - {episode.special ? 'S00E'+special.pad(2) : s00e00} - {t.colon(' - ').replaceAll(/[\\\`´‘’ʻ]/, /'/).replaceAll(/[!?.]+$/).replacePart(', Part \\\$1')}{'.'+lang}" \
             -non-strict \
             -r \
