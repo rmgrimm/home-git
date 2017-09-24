@@ -5,7 +5,7 @@ add_repos () {
 }
 
 install_packages () {
-    sudo aptitude install -y \
+    sudo apt install -y \
         apt-file             `: to find where files come from` \
         bzr \
         cpu-checker \

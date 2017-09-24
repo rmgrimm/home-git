@@ -27,9 +27,9 @@ fi
 # Also check for android tools
 if [ -z "$ANDROID_HOME" ]; then
     ANDROID_HOME="$HOME/.local/share/android-sdk-linux"
-    if [ -d "$ANDROID_HOME/tools" ]; then
+    if [ -d "$ANDROID_HOME/platform-tools" ]; then
         export ANDROID_HOME
-        PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+        PATH="$ANDROID_HOME/platform-tools:$PATH"
     else
         unset ANDROID_HOME
     fi
