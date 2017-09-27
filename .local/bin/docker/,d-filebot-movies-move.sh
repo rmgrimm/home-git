@@ -21,6 +21,7 @@ __rmg_d_run rednoah/filebot rednoah/filebot - \
             --rmg-multi \
             -v "${VOLUME}:/volume1" \
             -v "${DATA}:/data" \
+            --rm \
             -- \
             -rename \
             --db TheMovieDB \
