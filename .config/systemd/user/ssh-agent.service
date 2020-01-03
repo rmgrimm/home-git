@@ -1,6 +1,7 @@
-# From https://unix.stackexchange.com/a/390631
+# Based upon https://unix.stackexchange.com/a/390631
 [Unit]
 Description=SSH key agent
+Before=cros-garcon.service
 
 [Service]
 Type=simple
