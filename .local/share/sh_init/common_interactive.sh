@@ -67,7 +67,7 @@ fi
 # Setup Node Version Manager only for specific platforms
 if [ -r "$HOME/.local/share/nvm/nvm.sh" ]; then
     case $(uname -m) in
-    x86_64|armv7l)
+    x86_64|armv7l|aarch64)
         ,load-nvm() {
             . "$HOME/.local/share/nvm/nvm.sh"
             export NVM_DIR="$HOME/.local/share/node"
@@ -88,7 +88,7 @@ if [ -r "$HOME/.local/share/nvm/nvm.sh" ]; then
         ;;
     *)
         if [ -n "$Color_Off" ]; then
-            echo -e "Note: NVM not tested on " \
+            echo -e "Note: NVM not tested on" \
                  $BCyan"$(uname -m)"$Color_Off";" \
                  "NVM unavailable"
         else
@@ -102,6 +102,12 @@ if [ \( -z "$WINDOWS_SUBSYSTEM_FOR_LINUX" -o -n "$SSH_AUTH_SOCK" \) -a \
     -r "$HOME/.local/share/sshag/sshag.sh" ]
 then
     . "$HOME/.local/share/sshag/sshag.sh"
+    function sshag_findsockets() {
+        find /tmp -uid $(id -u) -type s -name agent.\* 2>/dev/null
+        if [ -n "$XDG_RUNTIME_DIR" ]; then
+            find $XDG_RUNTIME_DIR -type s -name ssh-agent.socket 2>/dev/null
+        fi
+    }
     sshag_init
 fi
 

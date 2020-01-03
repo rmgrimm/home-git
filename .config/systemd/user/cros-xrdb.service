@@ -1,0 +1,13 @@
+# 
+[Unit]
+Description=Load ~/.Xresources on Crostini
+Requires=sommelier-x@0.service
+After=sommelier-x@0.service
+
+[Service]
+ExecStart=xrdb -merge %h/.Xresources
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

@@ -13,6 +13,9 @@ if [ -e "/usr/lib/git-core/git-sh-prompt" ]; then
 elif [ -e "/usr/share/git/completion/git-prompt.sh" ]; then
   . "/usr/share/git/completion/git-prompt.sh"
   HaveGit=1
+elif [ -e "/usr/share/git-core/contrib/completion/git-prompt.sh" ]; then
+  . "/usr/share/git-core/contrib/completion/git-prompt.sh"
+  HaveGit=1
 fi
 
 PS1='${debian_chroot:+($debian_chroot)}'
