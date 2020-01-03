@@ -1,7 +1,8 @@
 #!/bin/sh
 
 if [ -r "$HOME/.local/share/sshag/sshag.sh" ]; then
-    SHOULD_LOAD_SSHAG=y
+    # Unnecessary in .xsessionrc now; gnome-keychain supports key removal
+    # SHOULD_LOAD_SSHAG=y
 
     if [ -e "/usr/share/upstart/sessions/ssh-agent.conf" ]; then
         SHOULD_LOAD_SSHAG=n

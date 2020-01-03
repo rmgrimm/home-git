@@ -1,0 +1,125 @@
+[General]
+Description=Moe
+Opacity=1
+; Based upon the Emacs Moe Theme
+; To be placed at /usr/share/qtermwidget5/color-schemes/ (or eqiuvalent)
+
+[Background]
+Bold=false
+; black-5
+Color=48,48,48
+Transparency=false
+
+[BackgroundIntense]
+Bold=false
+; black-2-5
+Color=108,108,108
+Transparency=false
+
+[Color0]
+Bold=false
+; black-5
+Color=48,48,48
+Transparency=false
+
+[Color0Intense]
+Bold=false
+; black-2-5
+Color=108,108,108
+Transparency=false
+
+[Color1]
+Bold=false
+; red-3
+Color=164,0,0
+Transparency=false
+
+[Color1Intense]
+Bold=false
+; red-1
+Color=239,41,41
+Transparency=false
+
+[Color2]
+Bold=false
+; green-5
+Color=0,95,0
+Transparency=false
+
+[Color2Intense]
+Bold=false
+; green-1
+Color=175,255,0
+Transparency=false
+
+[Color3]
+Bold=false
+; yellow-4
+Color=135,95,0
+Transparency=false
+
+[Color3Intense]
+Bold=false
+; yellow-1
+Color=252,233,79
+Transparency=false
+
+[Color4]
+Bold=false
+; blue-4
+Color=0,95,175
+Transparency=false
+
+[Color4Intense]
+Bold=false
+; blue-1
+Color=95,175,215
+Transparency=false
+
+[Color5]
+Bold=false
+; magenta-3
+Color=255,31,139
+Transparency=false
+
+[Color5Intense]
+Bold=false
+; magenta-1
+Color=255,123,187
+Transparency=false
+
+[Color6]
+Bold=false
+; cyan-7
+Color=35,111,115
+Transparency=false
+
+[Color6Intense]
+Bold=false
+; cyan-1
+Color=135,255,255
+Transparency=false
+
+[Color7]
+Bold=false
+; white-3
+Color=178,178,178
+Transparency=false
+
+[Color7Intense]
+Bold=false
+; white-1
+Color=198,198,198
+Transparency=false
+
+[Foreground]
+Bold=false
+; white-1
+Color=198,198,198
+Transparency=false
+
+[ForegroundIntense]
+Bold=true
+; white-1 (but bold)
+Color=198,198,198
+Transparency=false
