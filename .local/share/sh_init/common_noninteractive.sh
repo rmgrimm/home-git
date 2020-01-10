@@ -17,6 +17,42 @@ then
     then
         xrdb -merge "$HOME/.Xresources" >/dev/null 2>&1
     fi
+
+    # Idea for KeeAgent usage from https://github.com/dlech/KeeAgent/issues/159
+    if which socat >/dev/null 2>&1 && \
+        [ -z "$SSH_AUTH_SOCK" -a -r "/mnt/c/Opt/keeagent.sock" ]
+    then
+        SSH_AUTH_KEEAGENT_SOCK=/mnt/c/Opt/keeagent.sock
+        SSH_AUTH_KEEAGENT_PORT=$(sed -r 's/!<socket >([0-9]*\b).*/\1/' $SSH_AUTH_KEEAGENT_SOCK)
+
+        # Use socket filename structure similar to ssh-agent
+        SSH_AUTH_TMPDIR=$(mktemp --tmpdir --directory keeagent-ssh.XXXXXXXXXX)
+        SSH_AUTH_SOCK="$SSH_AUTH_TMPDIR/agent.$$"
+
+        socat UNIX-LISTEN:${SSH_AUTH_SOCK},mode=0600,fork,shut-down TCP:127.0.0.1:${SSH_AUTH_KEEAGENT_PORT},connect-timeout=2 >/dev/null 2>&1 &
+        export SSH_AUTH_SOCAT_PID=$!
+
+        export SSH_AUTH_SOCK
+
+        unset SSH_AUTH_KEEAGENT_SOCK
+        unset SSH_AUTH_KEEAGENT_PORT
+        unset SSH_AUTH_TMPDIR
+    fi
+
+fi
+
+# Setup SSH agent
+if [ \( -z "$WINDOWS_SUBSYSTEM_FOR_LINUX" -o -n "$SSH_AUTH_SOCK" \) -a \
+    -r "$HOME/.local/share/sshag/sshag.sh" ]
+then
+    . "$HOME/.local/share/sshag/sshag.sh"
+    function sshag_findsockets() {
+        find /tmp -uid $(id -u) -type s -name agent.\* 2>/dev/null
+        if [ -n "$XDG_RUNTIME_DIR" ]; then
+            find $XDG_RUNTIME_DIR -type s -name ssh-agent.socket 2>/dev/null
+        fi
+    }
+    sshag_init
 fi
 
 # Check for android studio
