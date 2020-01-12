@@ -29,12 +29,18 @@ if [ $HaveGit ]; then
   PS1=$PS1'  else'
   PS1=$PS1'    echo "'$PSColorPre$IRed$PSColorPost'"$(__git_ps1 " (%s)");'
   PS1=$PS1'  fi) '$PS1ColorUser$PS1NewLine
+  if [ -n "$PS1ToolboxIndicator" ]; then
+      PS1=$PS1$PSColorPre$Purple$PSColorPost$PS1ToolboxIndicator
+  fi
   PS1=$PS1$PSColorPre$BYellow$PSColorPost$PS1PathShort
   PS1=$PS1$PSColorPre$Color_Off$PSColorPost'\$ ";'
   PS1=$PS1'else'
   PS1=$PS1'  echo "'
 fi
 PS1=$PS1' '$PS1ColorUser$PS1NewLine
+if [ -n "$PS1ToolboxIndicator" ]; then
+    PS1=$PS1$PSColorPre$Purple$PSColorPost$PS1ToolboxIndicator
+fi
 PS1=$PS1$PSColorPre$Yellow$PSColorPost$PS1PathShort
 PS1=$PS1$PSColorPre$Color_Off$PSColorPost'\$ '
 if [ $HaveGit ]; then

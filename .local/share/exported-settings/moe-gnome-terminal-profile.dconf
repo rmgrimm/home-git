@@ -1,0 +1,10 @@
+[/]
+audible-bell=true
+background-color='rgb(48,48,48)'
+bold-is-bright=true
+default-size-columns=160
+default-size-rows=40
+foreground-color='rgb(198,198,198)'
+palette=['rgb(48,48,48)', 'rgb(164,0,0)', 'rgb(0,95,0)', 'rgb(135,95,0)', 'rgb(0,95,175)', 'rgb(255,31,139)', 'rgb(35,111,115)', 'rgb(178,178,178)', 'rgb(108,108,108)', 'rgb(239,41,41)', 'rgb(175,255,0)', 'rgb(252,233,79)', 'rgb(95,175,215)', 'rgb(255,123,187)', 'rgb(135,255,255)', 'rgb(198,198,198)']
+use-theme-colors=false
+visible-name='Moe'
