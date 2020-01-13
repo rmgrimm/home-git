@@ -1,0 +1,60 @@
+# Profile using colors from Moe theme
+
+# start all keys blue-4
+a 005faf
+
+# blue-1
+g logo 5fafd7
+g modifiers 5fafd7
+k caps_lock 5fafd7
+k backspace 5fafd7
+k enter 5fafd7
+k tab 5fafd7
+
+# cyan-7
+g functions 236f73
+k g6 236f73
+k g7 236f73
+k g8 236f73
+k g9 236f73
+
+# cyan-1
+g fkeys 87ffff
+k escape 87ffff
+k print_screen 87ffff
+k scroll_lock 87ffff
+k pause_break 87ffff
+
+# red-3
+g numeric a40000
+
+# red-1
+k num1 ef2929
+k num2 ef2929
+k num3 ef2929
+k num4 ef2929
+k num5 ef2929
+k num6 ef2929
+k num7 ef2929
+k num8 ef2929
+k num9 ef2929
+
+# green-5
+g arrows 005f00
+k w 005f00
+k a 005f00
+k s 005f00
+k d 005f00
+
+# yellow-4
+k g1 875f00
+k g2 875f00
+k g3 875f00
+k g4 875f00
+k g5 875f00
+
+# others (don't seem to work on G910)
+g indicators c6c6c6 # white-1
+g multimedia ff1f8b # magenta-3
+
+c # Commit changes
