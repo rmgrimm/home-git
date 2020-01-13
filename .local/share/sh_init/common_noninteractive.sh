@@ -47,10 +47,13 @@ if [ \( -z "$WINDOWS_SUBSYSTEM_FOR_LINUX" -o -n "$SSH_AUTH_SOCK" \) -a \
 then
     . "$HOME/.local/share/sshag/sshag.sh"
     function sshag_findsockets() {
-        find /tmp -uid $(id -u) -type s -name agent.\* 2>/dev/null
         if [ -n "$XDG_RUNTIME_DIR" ]; then
+            if [ -S "$XDG_RUNTIME_DIR/keyring/ssh" ]; then
+                echo "$XDG_RUNTIME_DIR/keyring/ssh"
+            fi
             find $XDG_RUNTIME_DIR -type s -name ssh-agent.socket 2>/dev/null
         fi
+        find /tmp -uid $(id -u) -type s -name agent.\* 2>/dev/null
     }
     sshag_init
 fi
