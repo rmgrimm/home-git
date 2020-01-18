@@ -1,0 +1,6 @@
+# Reboot profile using colors from Moe theme
+
+# set all keys blue-4 when shutting down
+a 005faf
+
+c # Commit changes
