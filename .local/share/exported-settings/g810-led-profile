@@ -53,10 +53,11 @@ k g4 875f00
 k g5 875f00
 
 # others (don't seem to work on G910)
-g indicators c6c6c6 # white-1
-g multimedia ff1f8b # magenta-3
-g logo ff1f8b # magenta-3
+#g indicators c6c6c6 # white-1
+#g multimedia ff1f8b # magenta-3
+
+# Logo
+fx breathing logo ff1f8b 20 # Set breathing effect with magenta-3 and speed 20
+#g logo ff1f8b # magenta-3
 
 c # Commit changes
-
-fx breathing logo ff1f8b 20 # Set breathing effect with magenta-3 and speed 20
