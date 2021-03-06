@@ -1,0 +1,3 @@
+This file is here to obstruct Oracle Java's attempt to create a directory and
+start dropping timestamps into it. As far as I know, there's no way to
+directly turn that behavior off.
