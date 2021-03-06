@@ -3,7 +3,7 @@ To start using this home directory:
 ```bash
 # Copy stdin to another descriptor before feeding the script to bash
 exec 3<&1
-/bin/bash <&3 <(wget "https://raw.githubusercontent.com/rmgrimm/home-git/master/.local/share/home-git/install-home-git.sh" -O- )
+/bin/bash <&3 <(wget "https://raw.githubusercontent.com/rmgrimm/home-git/old/.local/share/home-git/install-home-git.sh" -O- )
 ```
 
 _Note: It's a good idea to double-check the contents of that URL prior to
