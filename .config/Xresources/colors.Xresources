@@ -1,0 +1,28 @@
+! Colors (based on Emacs Moe Theme)
+!   white-1 on black-5
+*foreground: rgb:c6/c6/c6
+*background: rgb:30/30/30
+!   blacks: black-5, black-2-5
+*color0:  rgb:30/30/30
+*color8:  rgb:6c/6c/6c
+!   reds: red-3, red-1
+*color1:  rgb:a4/00/00
+*color9:  rgb:ef/29/29
+!   green: green-5, green-1
+*color2:  rgb:00/5f/00
+*color10: rgb:af/ff/00
+!   yellow: yellow-4, yellow-1
+*color3:  rgb:87/5f/00
+*color11: rgb:fc/e9/4f
+!   blue: blue-4, blue-1
+*color4:  rgb:00/5f/af
+*color12: rgb:5f/af/d7
+!   magenta: magenta-3, magenta-1
+*color5:  rgb:ff/1f/8b
+*color13: rgb:ff/7b/bb
+!   cyan: cyan-7, cyan-1
+*color6:  rgb:23/6f/73
+*color14: rgb:87/ff/ff
+!   whites: white-3, white-1
+*color7:  rgb:b2/b2/b2
+*color15: rgb:c6/c6/c6

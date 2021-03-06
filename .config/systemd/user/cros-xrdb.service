@@ -1,0 +1,16 @@
+# Load .Xresources-style files from ~/.config/Xresources/*.Xresources
+# Idea from https://www.reddit.com/r/Crostini/comments/efc8yk/loading_xresources_on_boot/
+[Unit]
+Description=Load Xresources on Crostini
+Requires=sommelier-x@0.service
+After=sommelier-x@0.service
+ConditionPathExists=/usr/bin/xrdb
+ConditionPathExistsGlob=%h/.config/Xresources/*.Xresources
+
+[Service]
+ExecStart=%h/.opt/load-all-xresources/load-all-xresources.sh
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
