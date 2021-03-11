@@ -1,1 +1,0 @@
-../.opt/rmg-bash-init/common-parts/set-prompt.sh
