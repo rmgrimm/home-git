@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Old versions of sommelier (that work with Crouton) come with a
+# /etc/sommelierrc that tries to source ~/.xwlrc instead of ~/.sommelierrc
+
+if [ -f ~/.sommelierrc ]
+then
+  . ~/.sommelierrc
+fi
