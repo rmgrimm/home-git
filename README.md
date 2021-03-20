@@ -36,5 +36,6 @@ After this is complete, adjust as necessary, update README.md, commit, and
 push.
 
 [crostini-fedora-branch]: https://github.com/rmgrimm/home-git/tree/env/crostini/fedora
+[crouton-debian-branch]: https://github.com/rmgrimm/home-git/tree/env/crouton/debian
 [new-env-base-branch]: https://github.com/rmgrimm/home-git/tree/env/new-env-base
 [old-branch]: https://github.com/rmgrimm/home-git/tree/env/old
