@@ -16,8 +16,7 @@ elif [ -e "/usr/share/git-core/contrib/completion/git-prompt.sh" ]; then
   HaveGit=1
 fi
 
-PS1='${debian_chroot:+($debian_chroot)}'
-PS1=$PS1$PSColorPre$IBlack$PSColorPost$PS1Time$PSColorPre$Color_Off$PSColorPost
+PS1=$PSColorPre$IBlack$PSColorPost$PS1Time$PSColorPre$Color_Off$PSColorPost
 if [ $HaveGit ]; then
   PS1=$PS1'$(git rev-parse --top-level >/dev/null 2>&1 ;'
   PS1=$PS1'if [ $? -eq 0 ]; then'
