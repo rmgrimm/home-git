@@ -7,7 +7,6 @@
 # URL: https://github.com/supechicken/ChromeOS-AutoStart
 # Command: sudo /usr/local/bin/enter-chroot -n <chroot-name> exec ,run-sommelier.sh xterm
 
-
 export GDK_BACKEND=x11
 export CLUTTER_BACKEND=wayland
 export XDG_RUNTIME_DIR=/var/run/chrome
@@ -15,19 +14,21 @@ export WAYLAND_DISPLAY=wayland-0
 export DISPLAY=:0
 export SCALE=1
 
-if [ -r "/usr/local/etc/sommelierrc" ]
-then
-  SOMMELIERRC=/usr/local/etc/sommelierrc
-elif [ -r "/etc/sommelierrc" ]
-then
-  SOMMELIERRC=/etc/sommelierrc
-else
-  SOMMELIERRC="$HOME"/.sommelierrc
-fi
-
 SOMM_PID=$(pidof sommelier 2>/dev/null)
 if [ -z "$SOMM_PID" ]
 then
+  if [ -r "/usr/local/etc/sommelierrc" ]
+  then
+    SOMMELIERRC=/usr/local/etc/sommelierrc
+  elif [ -r "/etc/sommelierrc" ]
+  then
+    SOMMELIERRC=/etc/sommelierrc
+  else
+    SOMMELIERRC="$HOME"/.sommelierrc
+  fi
+
+  echo "Starting sommelier with config file at $SOMMELIERRC"
+
   sommelier -X \
     --x-display="$DISPLAY" \
     --display="$WAYLAND_DISPLAY" \
@@ -54,7 +55,7 @@ else
   echo "sommelier (PID $SOMM_PID) is running"
 fi
 
-if [ "$1" -ne "" ]
+if [ -n "$1" ]
 then
   exec sommelier "$@"
 fi
