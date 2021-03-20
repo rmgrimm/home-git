@@ -1,9 +1,8 @@
 PS1Time="\t"
 PS1PathShort="\w"
-PS1User="\u@\h"'${debian_chroot:+($debian_chroot)}'
+PS1User="\u@\h"
 PS1NewLine="\n"
+PS1ContainerIndicator='${debian_chroot:+($debian_chroot)}'
 if [ -f "/run/.containerenv" ] && [ -f "/run/.toolboxenv" ]; then
-    PS1ToolboxIndicator="⬢ "
-else
-    PS1ToolboxIndicator=""
+    PS1ContainerIndicator=$PS1ContainerIndicator"⬢"
 fi
