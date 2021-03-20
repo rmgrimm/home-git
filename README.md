@@ -1,7 +1,7 @@
 # Debian in Crouton chroot for ChromeOS/CloudReady
 
 Home directory settings for use with Crouton chroots running Debian (and
-Debian-based) distrobutions on ChromeOS or [CloudReady][cloudrady-homepage].
+Debian-based) distrobutions on ChromeOS or [CloudReady][cloudready-homepage].
 
 [cloudready-homepage]: https://www.neverware.com/freedownload
 
