@@ -10,6 +10,8 @@ The available branches include:
 
  * [env/crostini/fedora][crostini-fedora-branch] - for use with Fedora on
    ChromeOS's Crostini linux container
+ * [env/crouton/debian][crouton-debian-branch] - for use with Debian (and
+   Debian-based) in a chroot on ChromeOS or CloudReady
  * [env/old][old-branch] - the branch containing all my old configs before
    reorganization
 
