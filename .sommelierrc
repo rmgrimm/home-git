@@ -14,5 +14,5 @@
 
 if [ -x /usr/bin/xrdb ]
 then
-  "$HOME/.opt/load-all-xresources/load-all-xresources.sh"
+  "$HOME/.opt/rmg-load-xresources/load-all-xresources.sh"
 fi
