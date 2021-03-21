@@ -12,7 +12,7 @@
 #  xrdb -merge ~/.Xresources
 #fi
 
-if [ -x /usr/bin/xrdb ]
+if command -v xrdb >/dev/null
 then
   "$HOME/.opt/rmg-load-xresources/load-all-xresources.sh"
 fi

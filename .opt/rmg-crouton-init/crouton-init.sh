@@ -5,7 +5,7 @@
 # Command: sudo /usr/local/bin/enter-chroot -n <chroot-name> exec ~/.opt/rmg-crouton-init/crouton-init.sh
 
 # Start a common ssh-agent instance
-if [ command -v ssh-agent ]
+if command -v ssh-agent >/dev/null
 then
   eval $(ssh-agent -s)
 fi
@@ -15,9 +15,10 @@ fi
 sleep 30
 
 # Start lxterminal
-if [ command -v lxterminal ]
+if command -v lxterminal >/dev/null
 then
   ,run-sommelier.sh lxterminal
-else
+elif command -v xterm >/dev/null
   ,run-sommelier.sh xterm
 fi
+
