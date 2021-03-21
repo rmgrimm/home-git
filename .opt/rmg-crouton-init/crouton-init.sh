@@ -19,6 +19,6 @@ if command -v lxterminal >/dev/null
 then
   ,run-sommelier.sh lxterminal
 elif command -v xterm >/dev/null
+then
   ,run-sommelier.sh xterm
 fi
-
