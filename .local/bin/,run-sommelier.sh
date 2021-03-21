@@ -3,10 +3,6 @@
 # Based loosely upon concepts from
 # https://github.com/dnschneid/crouton/wiki/Sommelier-%28A-more-native-alternative-to-xiwi%29
 
-# Set this to run with ChromeOS-AutoStart
-# URL: https://github.com/supechicken/ChromeOS-AutoStart
-# Command: sudo /usr/local/bin/enter-chroot -n <chroot-name> exec ,run-sommelier.sh xterm
-
 export GDK_BACKEND=x11
 export CLUTTER_BACKEND=wayland
 export XDG_RUNTIME_DIR=/var/run/chrome
