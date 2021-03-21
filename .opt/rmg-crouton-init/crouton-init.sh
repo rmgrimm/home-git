@@ -2,7 +2,7 @@
 
 # Set this to run with ChromeOS-AutoStart
 # URL: https://github.com/supechicken/ChromeOS-AutoStart
-# Command: sudo /usr/local/bin/enter-chroot -n <chroot-name> exec ~/.opt/rmg-crouton-init/crouton-init.sh
+# Command: sudo /usr/local/bin/enter-chroot -n <chroot-name> exec /home/robert/.opt/rmg-crouton-init/crouton-init.sh
 
 # Start a common ssh-agent instance
 if command -v ssh-agent >/dev/null
