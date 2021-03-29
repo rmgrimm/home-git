@@ -24,6 +24,15 @@ then
   export XDG_DATA_DIRS="$HOME/.local/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
   export DISPLAY=:0
   eval $(dbus-launch --sh-syntax --exit-with-x11)
+
+  if [ -x /usr/libexec/xdg-document-portal ]
+  then
+    # /var/run synlinks to /run, and /run/chrome symlinks to /var/host/chrome
+    # but fuse has trouble mounting when multiple levels of symlink are traversed,
+    # so help out the XDG document portal by pointing it; but leave the regular
+    # runtime directory alone, so Flatpak won't complain about non-standard paths
+    XDG_RUNTIME_DIR=/var/host/chrome /usr/libexec/xdg-document-portal
+  fi
 fi
 
 # Start lxterminal
