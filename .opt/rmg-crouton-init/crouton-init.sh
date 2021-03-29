@@ -31,7 +31,7 @@ then
     # but fuse has trouble mounting when multiple levels of symlink are traversed,
     # so help out the XDG document portal by pointing it; but leave the regular
     # runtime directory alone, so Flatpak won't complain about non-standard paths
-    XDG_RUNTIME_DIR=/var/host/chrome /usr/libexec/xdg-document-portal
+    XDG_RUNTIME_DIR=/var/host/chrome /usr/libexec/xdg-document-portal &
   fi
 fi
 
