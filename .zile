@@ -1,0 +1,13 @@
+;; Don't show the help window
+(setq inhibit-splash-screen t)
+
+;; Faster window switching
+(global-set-key "\C-o" 'other-window)
+
+;; Don't make backups
+(setq make-backup-files nil)
+
+;; Set indent options
+(setq indent-tabs-mode nil)
+(setq standard-indent 2)
+(setq-default tab-width 2)
