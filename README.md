@@ -8,6 +8,8 @@ branches of this repository.
 
 The available branches include:
 
+ * [env/baremetal/fedora][baremetal-fedora-branch] - for use with Fedora
+   (and similar) on real hardware
  * [env/crostini/fedora][crostini-fedora-branch] - for use with Fedora on
    ChromeOS's Crostini linux container
  * [env/crouton/debian][crouton-debian-branch] - for use with Debian (and
@@ -35,6 +37,7 @@ git checkout --orphan env/new-branch-name
 After this is complete, adjust as necessary, update README.md, commit, and
 push.
 
+[baremetal-fedora-branch]: https://github.com/rmgrimm/home-git/tree/env/baremetal/fedora
 [crostini-fedora-branch]: https://github.com/rmgrimm/home-git/tree/env/crostini/fedora
 [crouton-debian-branch]: https://github.com/rmgrimm/home-git/tree/env/crouton/debian
 [new-env-base-branch]: https://github.com/rmgrimm/home-git/tree/env/new-env-base
