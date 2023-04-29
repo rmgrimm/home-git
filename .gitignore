@@ -1,0 +1,7 @@
+
+# Ignore everything by default; require explicit add to the repository
+*
+
+# Except the following
+!.gitconfig
+!.gitignore
