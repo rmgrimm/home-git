@@ -6,8 +6,9 @@ case $- in
 esac
 
 # Load oc completions if not generated as a file
-if command -v oc &>/dev/null &&
-  [ ! -e "$HOME/.bash_completions.d/oc" ];
+if
+  command -v oc &>/dev/null &&
+  [ ! -e "$HOME/.bash_completions.d/oc" ]
 then
   source <(oc completion bash)
 fi

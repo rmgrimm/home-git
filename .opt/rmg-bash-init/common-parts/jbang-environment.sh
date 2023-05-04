@@ -6,7 +6,9 @@ case $- in
 esac
 
 # Add JBang to environment
-if command -v jbang &>/dev/null ; then
+if
+  command -v jbang &>/dev/null
+then
   alias j!=jbang
   export PATH="$HOME/.jbang/bin:$PATH"
 
@@ -15,7 +17,9 @@ if command -v jbang &>/dev/null ; then
 
   source <(jbang completion)
 
-  if command -v camel &>/dev/null ; then
+  if
+    command -v camel &>/dev/null
+  then
     source <(camel completion)
   fi
 fi

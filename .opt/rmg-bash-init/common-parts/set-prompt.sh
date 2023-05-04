@@ -1,4 +1,3 @@
-# Some of this is based upon the default from my old Debian/Ubuntu based config
 
 # Don't bother if not running interactively
 case $- in
@@ -13,9 +12,12 @@ case "$TERM" in
 esac
 
 # Test for terminal color support
-if [ -z "$color_prompt" ]
+if
+  [ -z "$color_prompt" ]
 then
-  if [ -x "/usr/bin/tput" ] && tput setaf 1 >&/dev/null
+  if
+    [ -x "/usr/bin/tput" ] &&
+    tput setaf 1 >&/dev/null
   then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of support is extremely rare, and such
@@ -24,7 +26,8 @@ then
   fi
 fi
 
-if [ "$color_prompt" = yes ]
+if
+  [ "$color_prompt" = yes ]
 then
   . "$HOME/.opt/rmg-bash-init/lib/ps1_color.sh"
 else
