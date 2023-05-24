@@ -4,3 +4,5 @@
 	default = simple
 [rebase]
 	autosquash = true
+[init]
+	defaultBranch = main
