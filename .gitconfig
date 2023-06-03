@@ -1,8 +1,13 @@
 [user]
 	name = Robert Grimm
+	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRS+QuGcS+Bm4EiW7d0EvJBYxeWaPzZ4+RqsnNaEz3z id_rmg-git-sign
 [push]
 	default = simple
 [rebase]
 	autosquash = true
 [init]
 	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
