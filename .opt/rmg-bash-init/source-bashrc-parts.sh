@@ -1,24 +1,29 @@
 # Only display echos from scripts if interactive
 
-case $- in
-  *i*)
-    for i in $HOME/.bashrc.d.rmg/*.sh
-    do
-      if [ -r "$i" ]
-      then
-        . "$i"
-      fi
-    done
-  ;;
-  *)
-    for i in $HOME/.bashrc.d.rmg/*.sh
-    do
-      if [ -r "$i" ]
-      then
-        . "$i" > /dev/null
-      fi
-    done
-  ;;
-esac
+if [ "x$RMG_BASHRC_SOURCED" = "x" ]
+then
+  RMG_BASHRC_SOURCED=y
 
-unset i
+  case $- in
+    *i*)
+      for i in $HOME/.bashrc.d.rmg/*.sh
+      do
+        if [ -r "$i" ]
+        then
+          . "$i"
+        fi
+      done
+    ;;
+    *)
+      for i in $HOME/.bashrc.d.rmg/*.sh
+      do
+        if [ -r "$i" ]
+        then
+          . "$i" > /dev/null
+        fi
+      done
+    ;;
+  esac
+
+  unset i
+fi

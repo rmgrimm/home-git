@@ -1,0 +1,1 @@
+../.opt/rmg-bash-init/common-parts/podman-environment.sh

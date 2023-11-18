@@ -10,9 +10,13 @@ if
   command -v jbang &>/dev/null
 then
   alias j!=jbang
-  export PATH="$HOME/.jbang/bin:$PATH"
 
-  #export PATH="$HOME/.jbang/:$HOME/.jbang/currentjdk/bin::$PATH"
+  if ! [[ "$PATH" =~ "$HOME/.jbang/bin:" ]]
+  then
+    export PATH="$HOME/.jbang/bin:$PATH"
+  fi
+
+  #export PATH="$HOME/.jbang/:$HOME/.jbang/currentjdk/bin:$PATH"
   #export JAVA_HOME=$HOME/.jbang/currentjdk
 
   source <(jbang completion)
